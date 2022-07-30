@@ -1,1 +1,3 @@
-# Masai-Work-Repository
+# code-submission
+
+Masai School Coding Assignments
