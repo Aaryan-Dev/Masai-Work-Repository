@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+  <style>
+      h1{
+          text-align: center;
+          margin-bottom: 40px;
+          color: rgb(17, 117, 129)
+      }
+
+      .first{
+          margin: auto;
+          padding:35px;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        width:20% 
+      }
+
+        .fir{
+            margin: auto;
+            height: 10%;
+            height:50px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow: scroll;
+        }
+        
+        .sec{
+            display: flex;
+            margin: auto;
+            margin-top: 6px;
+            height: 10%;
+            height:50px;
+        }
+
+        .sec div{
+            width: 25%;
+            margin: auto;
+            margin: 0px 2px 0px 2px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            height:100%;
+        }
+        .sec div:hover, .sec #red:hover, .sec #black:hover{
+            background-color:gray;
+        }
+        div p{
+            text-align: center;
+        }
+
+        #red{
+            color:white;
+            background-color:red;
+        }
+
+        #black{
+            color:white;
+            background-color:black;
+        }
+        
+        div div{
+            border-radius: 5px;
+        }
+        
+  </style>
+<body>
+    
+    <h1>
+        Masai Calculator
+    </h1>
+ <div class="first" >
+  <div>
+   
+    <div class="fir">
+       
+    </div>
+
+
+    <div class="sec">
+       <div>
+         <p>1</p>
+       </div>
+       <div>
+        <p>2</p>
+       </div>
+       <div>
+        <p>3</p>
+       </div>
+       <div id = "black";>
+        <p>+</p>
+       </div>
+    </div>
+
+
+
+
+    <div class="sec">
+<div>
+    <p>4</p>
+       </div>
+       <div>
+        <p>5</p>
+       </div>
+       <div>
+        <p>6</p>
+       </div>
+       <div id = "black";>
+        <p>-</p>
+       </div>
+    </div>
+
+
+    <div class="sec">
+        <div>
+            <p>7</p>
+        </div>
+        <div>
+            <p>8</p>
+        </div>
+        <div>
+            <p>9</p>
+        </div>
+        <div id = "black"; >
+            <p >*</p>
+        </div>
+    </div>
+
+
+
+    <div class="sec">
+<div id = "red">
+    <p >C</p>
+         
+       </div>
+       <div>
+           <p>0</p>
+       </div>
+       <div id = "equal" >
+           <p>=</p>
+       </div>
+       <div id = "black" >
+           <p>/</p>
+       </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+
+let butts = document.querySelectorAll(".sec div, .sec #black");
+
+let bag = "";
+
+for(let i =0; i<butts.length; i++){
+    butts[i].addEventListener("click",put);
+
+}
+function put(event) {
+    if(event.target.innerText!="C" && event.target.innerText!="=" ){
+    bag = bag + event.target.innerText
+    document.querySelector(".fir").innerText= bag;
+}
+}
+
+document.querySelector("#red").addEventListener("click", empty)
+
+function empty(){
+
+    bag = ""
+    document.querySelector(".fir").innerText= bag;
+}
+
+
+document.querySelector("#equal").addEventListener("click", cal)
+
+function cal(){
+if(bag== ""){
+    document.querySelector(".fir").innerText= bag;
+}else{
+    document.querySelector(".fir").innerText= eval(bag);
+}
+}
+</script>
