@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leaderboard</title>
+
+
+   <style>
+
+      #minmax{
+          margin: auto;
+          width:25%;
+          display:flex;
+          justify-content:space-between;
+      }
+      #minmax>div{
+          display:flex;
+          flex-direction: column;
+          justify-content:center;
+          align-items:center;
+        }
+        
+        #minmax>div>div{
+          border:1px solid black;
+          padding:10px;
+      }
+
+      #minmax>div:nth-child(1)>div{
+             background-color: red;
+      }
+
+      #minmax>div:nth-child(2)>div{
+                background-color:green;
+      }
+
+      #score{
+          margin:auto;
+          width:21%;
+          
+          display: flex;
+          flex-direction:column;
+          justify-content:center;
+          align-items: center;
+      }
+      #score>div{
+          margin:auto;
+          width:90%;
+          height: 50px;
+          border: 1px solid black;
+          background-color:gray;
+          display: flex;
+          justify-content:center;
+          align-items: center;
+      }
+
+
+      #num{
+          margin: auto;
+          margin-top:30px;
+          display: grid;
+          width:200px;
+          grid-template-columns:repeat(3, 1fr) ;
+          grid-template-rows: repeat(4, 50px) ;
+          gap : 20px;
+          justify-content : center;
+      }
+      #num>div{
+          border: 1px solid black;
+          display: flex;
+          justify-content : center;
+          align-items: center;
+        } 
+        #num>div:nth-child(10){
+            border: 0px
+        }
+        
+        
+        #num>div:nth-child(12){
+
+            border: 0px;
+        }
+
+        button{
+            display: block;
+            margin: auto;
+            margin-top: 10px;
+            color: white;
+            background-color: black;
+
+        }
+
+   </style>
+    
+    
+</head>
+<body>
+    
+<div id="minmax">
+    <div>
+
+        <div>43</div>
+        <p>MIN</p>
+
+    </div>
+
+
+    <div>
+
+        <div>2019</div>
+        <p>MAX</p>
+                
+            
+    </div>
+    </div>
+
+    
+    
+    <div id="score">
+    <p>SCORE</p>
+    <div></div>
+    </div>
+
+
+
+<div id="num">
+
+ <div>1</div>
+ <div>2</div>
+ <div>3</div>
+ <div>4</div>
+ <div>5</div>
+ <div>6</div>
+ <div>7</div>
+ <div>8</div>
+ <div>9</div>
+ <div></div>
+ <div>0</div>
+ <div></div>
+
+</div>
+
+<button>ENTER</button>
+
+</body>
+</html>
+
+
+<script>
+
+    let toClick = document.querySelectorAll("#num div");
+    
+    let bag = ""; 
+    for(let j=0; j<toClick.length; j++){
+        toClick[j].addEventListener("click", cal);
+        
+        
+             function cal(){
+                 bag = bag + (toClick[j].innerText);
+                 document.querySelector("#score>div").innerText =  bag;
+                }
+            }
+
+            
+            
+            document.querySelector("button").addEventListener("click", compare)
+            
+            function compare(){
+                
+                let clickIt = document.querySelector("#score>div").innerText;
+            if(Number(clickIt) < Number(document.querySelectorAll("#minmax>div>div")[0].innerText)){
+                     (document.querySelectorAll("#minmax>div>div")[0].innerText) = clickIt
+            }
+
+            else if(Number(clickIt) > Number(document.querySelectorAll("#minmax>div>div")[1].innerText)){
+                     (document.querySelectorAll("#minmax>div>div")[1].innerText) = clickIt
+            }
+ 
+            bag = "";
+            document.querySelector("#score>div").innerText =  bag;
+        }
+             
+    
+
+
+  
+        
+
+
+</script>
