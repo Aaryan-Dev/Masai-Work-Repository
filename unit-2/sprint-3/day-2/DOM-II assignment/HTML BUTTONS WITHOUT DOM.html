@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML BUTTONS WITHOUT DOM</title>
+    
+<style>
+    #main{
+        margin: auto;
+        width: 62%;
+    display: flex;
+    justify-content: space-around;
+}
+
+      #main>div{
+          width: auto;
+          color: white;
+          border-radius: 3px;
+          font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          display: flex;
+          justify-content:center;
+          align-items: center;
+          padding: 6px 0px 6px 0px;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-size:20px
+        } 
+          
+        #main>div:nth-child(1){
+            background-color: blue;
+        }
+        
+        #main>div:nth-child(2){
+            background-color:gray ;
+        }
+        #main>div:nth-child(3){
+            background-color:green ;
+        }
+        #main>div:nth-child(4){
+            background-color:red ;
+        }
+        #main>div:nth-child(5){
+            color:black ;
+            background-color:orange ;
+        }
+        #main>div:nth-child(6){
+            background-color:teal ;
+        }
+        #main>div:nth-child(7){
+            color:black ;
+            background-color:white ;
+        }
+        #main>div:nth-child(8){
+            color:white ;
+            background-color: black ;
+        }
+        #main>div:nth-child(9){
+            color: blue;
+            background-color: white ;
+        }
+
+</style>    
+    
+</head>
+
+<body>
+    <div id="main">
+        <div>Primary</div>
+        <div>Secondary</div>
+        <div>Success</div>
+        <div>Danger</div>
+        <div>Warning</div>
+        <div>Info</div>
+        <div>Light</div>
+        <div>Dark</div>
+        <div>Link</div>
+    </div>
+
+
+</body>
+</html>
