@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini</title>
+
+    <style>
+ 
+    div{
+        margin-top: 10px;
+        width: 28%;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+
+    }
+    div>button{
+        display: block;
+    }
+
+    </style>
+
+</head>
+
+
+<body>
+    
+    <input type="number" placeholder="enter 1st number" id="1stN">
+    <input type="number" placeholder="enter 2nd number" id="2stN">
+
+
+    <div>
+        <button id="add" onclick="a()">ADD</button>
+        <button id="sub"  onclick="b()">SUBTRACT</button>
+        <button id="mulp"  onclick="c()">MULTIPLY</button>
+        <button id="div"  onclick="d()">DIVIDE</button>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+
+function a() {
+    alert(document.getElementById("1stN").value +  document.getElementById("2stN").value)
+}
+function b() {
+    
+    alert(document.getElementById("1stN").value  -  document.getElementById("2stN").value)
+}
+function c() {
+    alert(document.getElementById("1stN").value *  document.getElementById("2stN").value)
+    
+}
+function d() {
+    alert(document.getElementById("1stN").value /  document.getElementById("2stN").value)
+
+}
+
+</script>
