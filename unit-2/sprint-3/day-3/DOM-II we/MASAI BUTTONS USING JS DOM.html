@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons</title>
+
+    <style>
+
+#butt{
+
+    margin-right: 10px;
+    border:0px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+    </style>
+
+</head>
+<body>
+</body>
+</html>
+
+<script>
+
+    let arrBut = [
+{name: "Primary", bgcolor:"blue", color:"white"},
+{name: "Secondary", bgcolor:"gray", color:"white"},
+{name: "Sussess", bgcolor:"green", color:"white"},
+{name: "Danger", bgcolor:"red", color:"white"},
+{name: "Warning", bgcolor:"Orange", color:"Black"},
+{name: "Info", bgcolor:"teal", color:"white"},
+{name: "light", bgcolor:"white", color:"Black"},
+{name: "Dark", bgcolor:"Black", color:"white"},
+{name: "Link", bgcolor:"White", color:"blue"}
+    ]
+
+    let B = document.createElement("div");
+    document.querySelector("body").append(B);
+    B.setAttribute("Id", "divi")
+
+     arrBut.forEach(function(elem){
+
+     let But = document.createElement("Button");
+             But.innerText = elem.name
+             But.style.backgroundColor= elem.bgcolor;
+             But.style.color= elem.color
+     
+             document.querySelector("div").append(But);
+
+             But.setAttribute("Id","butt");
+     })
+     
+console.log(document);        
+     </script>
