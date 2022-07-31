@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>continent</title>
+
+</head>
+<body>
+    
+<select id="country">
+  <option value="I">India</option>
+  <option value="USA">United States of America</option>
+  <option value="C">China</option>
+  <option value="N">Nepal</option>
+  <option value="AUS">Australia</option>
+  <option value="F">France</option>
+  <option value="G">Germany</option>
+  <option value="SF">South Africa</option>
+  <option value="NI">Nigeria</option>
+  <option value="MEX">Mexico</option>
+  <option value="ARG">Argentina</option>
+  <option value="BRA">Brazil</option>
+  <option value="CAN">Canada</option>
+  <option value="SIN">Singapore</option>
+  <option value="SWED">Sweden</option>
+</select>
+<br>
+<br>
+<button>Find continent</button>
+
+</body>
+</html>
+
+<script>
+
+document.querySelector("button").addEventListener("click", findCont)
+
+function findCont(){
+
+let val = document.querySelector("#country").value;
+
+console.log(val);
+switch (val) {
+
+   case "I" : alert("India is on Earth")
+   break;
+   case "USA" : alert("United States of America is on Earth")
+   break;
+   case "C" : alert("China is on Earth")
+   break;
+   case "N" : alert("Nepal is on Earth")
+   break;
+   case "AUS" : alert("Australia is on Earth")
+   break;
+   case "F" : alert("France is on Earth")
+   break;
+   case "G" : alert("Germany is on Earth")
+   break;
+   case "SF" : alert("South Africa is on Earth")
+   break;
+   case "NI" : alert("Nigeria is on Earth")
+   break;
+   case "MEX" : alert("Mexico is on Earth")
+   break;
+   case "ARG" : alert("Argentina is on Earth")
+   break;
+   case "BRA" : alert("Brazil is on Earth")
+   break;
+   case "CAN" : alert("Canada is on Earth")
+   break;
+   case "SIN" : alert("Singapore is on Earth")
+   break;
+   case "SWED" : alert("Sweden is on Earth")
+
+}
+
+}
+
+</script>
