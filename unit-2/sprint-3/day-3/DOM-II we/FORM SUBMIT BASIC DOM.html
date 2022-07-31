@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM SUBMIT BASIC DOM</title>
+</head>
+<body>
+    
+
+    <form id="Form">
+
+        <input id="N" type="text" placeholder="Name">
+        <br>
+        <input id="A" type="number" placeholder="Age">
+<br>
+<label for="M">
+   <select name="se" id="S">
+       <option value="Male">Male</option>
+       <option value="Female">Female</option>
+   </select>
+<br>
+        <input type="email" id="Em" placeholder="Email">
+        <br>
+        <input id="No" type="number" placeholder="Mobile Number">
+
+        <input type="submit" value="submit">
+    </form>
+    
+</body>
+</html>
+
+<script>
+
+ document.querySelector("form").addEventListener("submit", display);
+
+ function display() {
+   event.preventDefault();
+
+let arrObject = [
+
+{Name:document.querySelector("#N").value},
+{Age:document.querySelector("#A").value},
+{Gender:document.querySelector("#S").value},
+{Email:document.querySelector("#Em").value},
+{Mobile_Number:document.querySelector("#No").value},
+
+
+]
+
+console.log(arrObject);
+
+ }
+
+</script>
