@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+
+    <style>
+      #fir {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat();
+        gap: 20px;
+      }
+
+      #fi {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px;
+      }
+
+      #fo {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="fi">
+      <h2>Cart</h2>
+      <div id="fo"></div>
+      <!-- <a href="payment.html">Buy Now</a> -->
+    </div>
+  </body>
+</html>
+
+<script>
+  // setTimeout("location.reload(true);", 1000);
+
+  let arrC1 = JSON.parse(localStorage.getItem("Cart")) || [];
+
+  let firDiv = document.createElement("div");
+  firDiv.setAttribute("id", "fir");
+  document.querySelector("body").append(firDiv);
+
+  let sum = 0;
+
+  arrC1.forEach(function (elem, index, arr) {
+    let secDiv = document.createElement("div");
+    firDiv.append(secDiv);
+
+    let imig = document.createElement("img");
+    imig.setAttribute("src", elem.imgUrl);
+
+    let nama = document.createElement("h4");
+    nama.innerText = elem.pName;
+
+    let prici = document.createElement("h5");
+    prici.innerText = elem.disPrice;
+
+    let Stpri = document.createElement("h4");
+    Stpri.innerText = elem.OriPrice;
+    Stpri.style.textDecoration = "line-through";
+
+    let val = document.createElement("input");
+    val.addEventListener("click", inc);
+    val.type = "Number";
+    val.min = "1";
+    val.value = "1";
+    val.style.width = "10%";
+
+    function inc() {
+      prici.innerText = elem.disPrice * val.value;
+      Stpri.innerText = elem.OriPrice * val.value;
+    }
+    sum = sum + Number(elem.disPrice) * val.value;
+
+    let del = document.createElement("button");
+    del.innerText = "Remove from cart";
+    del.style.width = "30%";
+    del.style.marginLeft = "45%";
+    del.addEventListener("click", function () {
+      de(index);
+    });
+    del.setAttribute("class", "ref");
+
+    function de(index) {
+      arrC1.splice(index, 1);
+      localStorage.setItem("Cart", JSON.stringify(arrC1));
+
+      window.location.reload();
+    }
+
+    secDiv.append(imig, nama, prici, Stpri, val, del);
+  });
+  console.log(sum);
+
+  let off = document.createElement("input");
+  off.type = "Text";
+  off.setAttribute("id", "pr");
+  off.style.marginRight = "3%";
+  off.style.marginBottom = "1%";
+
+  let promo = document.createElement("button");
+  promo.innerText = "Apply Promo";
+  promo.style.marginBottom = "4%";
+  promo.style.width = "50%";
+  promo.addEventListener("click", pro);
+
+  function pro() {
+    if (document.querySelector("#pr").value == "masai30") {
+      info.innerText =
+        "Items- " +
+        String(arrC1.length) +
+        " " +
+        "Total price- " +
+        String((sum * (7 / 100)).toFixed(2));
+    } else if (document.querySelector("#pr").value !== "masai30") {
+      alert("Wrong Promo");
+    }
+  }
+
+  document.querySelector("#fo").append(off, promo);
+
+  let info = document.createElement("h4");
+  info.setAttribute("id", "inf");
+
+  let aa = document.createElement("a");
+  aa.href = "payment.html";
+  aa.innerText = "Buy Now";
+
+  document.querySelector("#fi").append(info, aa);
+  info.innerText =
+    "Items- " + String(arrC1.length) + " " + "Total price- " + String(sum);
+  info.style.fontSize = "20px";
+</script>
