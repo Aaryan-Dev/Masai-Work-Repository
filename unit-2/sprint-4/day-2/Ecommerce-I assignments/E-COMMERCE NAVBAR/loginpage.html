@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masai|Signup</title>
+
+    <style>
+      * {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+
+      div {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      form {
+        margin: 0 auto;
+        width: 35%;
+        padding: 0.5%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 10px;
+      }
+
+      label {
+        text-align: left;
+      }
+
+      #Fname,
+      #email,
+      #pass {
+        width: 90%;
+        text-align: left;
+        font-size: 20px;
+        color: gray;
+      }
+
+      h5 {
+        margin-left: 4%;
+        text-align: left;
+        margin-bottom: -3%;
+        color: rgb(81, 81, 81);
+      }
+
+      #submit {
+        width: 90%;
+        border-radius: 6px;
+        border: 0px;
+        padding: 10px;
+        cursor: pointer;
+        color: white;
+        background-color: rgb(55, 55, 192);
+      }
+
+      #secBut {
+        width: 90%;
+        border-radius: 6px;
+        border: 0px;
+        padding: 10px;
+        cursor: pointer;
+        color: white;
+        background-color: rgb(55, 55, 192);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img src="https://sso.masaischool.com/brand_dark.svg" alt="masai logo" />
+
+      <form id="form">
+        <h3>Sign Up</h3>
+
+        <h5 id="N">Full name</h5>
+        <br />
+        <input type="text" id="Fname" />
+
+        <br />
+
+        <h5>Email</h5>
+        <br />
+        <input type="email" id="email" />
+
+        <br />
+
+        <h5>Password</h5>
+        <br />
+        <input type="password" id="pass" />
+
+        <br />
+
+        <h6>
+          By signing up, I accept the Masai School
+          <a href="http://">Terms of service</a> and knowledge the
+          <a href="http://">privacy policy</a>
+        </h6>
+
+        <input type="submit" value="Sign Up" id="submit" />
+
+        <h6>Already have an account?<a href="http://">Sign In</a></h6>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", func);
+
+  let arr = JSON.parse(localStorage.getItem("data")) || [];
+
+  function func() {
+    event.preventDefault();
+
+    let obj = {
+      name: document.querySelector("#Fname").value,
+      email: document.querySelector("#email").value,
+      password: document.querySelector("#pass").value,
+    };
+
+    arr.push(obj);
+
+    console.log(obj);
+
+    localStorage.setItem("data", JSON.stringify(arr));
+    getOf();
+
+    function getOf() {
+      document.querySelector("#submit").remove();
+      document.querySelector("h6").remove();
+      document.querySelector("#Fname").remove();
+      document.querySelector("#N").remove();
+
+      let siBut = document.createElement("button");
+      document.querySelector("form").append(siBut);
+      siBut.setAttribute("id", "secBut");
+      siBut.style.marginBottom = "10px";
+      siBut.innerText = "Login In";
+
+      document.querySelector("h3").innerText = "Log In";
+
+      document.querySelector("h6").innerText =
+        "Already have an account? Sign In ";
+
+      siBut.addEventListener("click", sign);
+
+      console.log(arr);
+    }
+
+    // sign();
+
+    function sign() {
+      // name: document.querySelector("#Fname").value,
+      // email: document.querySelector("#email").value,
+
+      let count = 0;
+
+      arr.forEach(function (elem) {
+        if (
+          document.querySelector("#email").value == elem.email &&
+          document.querySelector("#pass").value == elem.password
+        ) {
+          count++;
+        } else {
+        }
+      });
+
+      if (count !== 0) {
+        alert("Login successful");
+      } else {
+        alert("wrong credentials");
+      }
+    }
+  }
+  getOf();
+  function getOf() {
+    document.querySelector("#submit").remove();
+    document.querySelector("h6").remove();
+    document.querySelector("#Fname").remove();
+    document.querySelector("#N").remove();
+
+    let siBut = document.createElement("button");
+    document.querySelector("form").append(siBut);
+    siBut.setAttribute("id", "secBut");
+    siBut.style.marginBottom = "10px";
+    siBut.innerText = "Login In";
+
+    document.querySelector("h3").innerText = "Log In";
+
+    document.querySelector("h6").innerText =
+      "Already have an account? Sign In ";
+
+    siBut.addEventListener("click", sign);
+
+    console.log(arr);
+  }
+</script>
