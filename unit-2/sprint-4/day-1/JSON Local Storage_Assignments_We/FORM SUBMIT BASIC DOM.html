@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM SUBMIT BASIC DOM</title>
+  </head>
+
+  <body>
+    <form>
+      <input type="text" placeholder="Name" id="name" />
+      <br /><br />
+      <input type="number" placeholder="Age" id="age" />
+      <br /><br />
+
+      <select id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <br /><br />
+
+      <input type="email" placeholder="Email" id="email" />
+      <br /><br />
+
+      <input type="number" id="num" placeholder="number" />
+      <br /><br />
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", store);
+
+  let sArr = [];
+  function store() {
+    event.preventDefault();
+    console.clear();
+    let objS = {
+      Name: document.querySelector("#name").value,
+      Age: document.querySelector("#age").value,
+      Gender: document.querySelector("#gender").value,
+      Email: document.querySelector("#email").value,
+      Mobile_No: document.querySelector("#num").value,
+    };
+
+    sArr.push(objS);
+    console.log(sArr);
+  }
+</script>
