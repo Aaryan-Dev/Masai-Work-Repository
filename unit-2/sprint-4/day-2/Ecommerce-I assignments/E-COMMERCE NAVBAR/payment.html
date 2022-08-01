@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment GateWay</title>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      form {
+        margin: auto;
+        width: 22%;
+        margin-top: 5%;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form action="" id="form">
+      Card Number
+      <br />
+      <input type="Number" id="card" />
+
+      <br />
+      <br />
+      CVV
+      <br />
+      <input type="Number" id="cvv" />
+      <br />
+      <br />
+      Expiry Date
+      <br />
+      <input type="Number" id="exDate" />
+      <br />
+      <br />
+      Name of Card Holder
+      <br />
+      <input type="text" id="nam" />
+      <br />
+      <br />
+      <input type="submit" value="submit" />
+      <br />
+      <pre>card no.- 123456789,         CVV- 888       Expiry Date- 0926</pre>
+    </form>
+  </body>
+</html>
+
+<script>
+  document.querySelector("#form").addEventListener("submit", veri);
+
+  function veri() {
+    event.preventDefault();
+    if (
+      document.querySelector("#card").value == 123456789 &&
+      document.querySelector("#cvv").value == 888 &&
+      document.querySelector("#exDate").value == 0926
+    ) {
+      var newtab = window.open("OTP.html");
+      newtab.document.location.reload(true);
+
+      //or
+
+      //   window.location.href = "OTP.html";
+    } else if (
+      document.querySelector("#card").value !== 123456789 ||
+      document.querySelector("#cvv").value !== 888 ||
+      document.querySelector("#exDate").value !== 0926
+    ) {
+      alert("error");
+    }
+  }
+</script>
