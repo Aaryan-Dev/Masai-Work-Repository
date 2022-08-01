@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+
+    <style>
+      td {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+            <th>Salary expected</th>
+            <th>Add to bookmark</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    let arr = JSON.parse(localStorage.getItem("values"));
+
+    arr.forEach(function (elem, index) {
+      let tr = document.createElement("tr");
+      document.querySelector("#body").append(tr);
+
+      let name = document.createElement("td");
+      name.innerText = elem.nam;
+
+      let email = document.createElement("td");
+      email.innerText = elem.ema;
+
+      let ja = document.createElement("td");
+      ja.innerText = elem.rol;
+
+      let saex = document.createElement("td");
+      saex.innerText = elem.salar;
+
+      let bookm = document.createElement("td");
+      bookm.innerText = "Bookmark";
+      bookm.style.color = "red";
+      bookm.addEventListener("click", function () {
+        book(index);
+      });
+
+      tr.append(name, email, ja, saex, bookm);
+    });
+
+    let arr2 = JSON.parse(localStorage.getItem("bmark")) || [];
+
+    function book(index) {
+      let obj1 = {
+        dam: event.path[1].childNodes[0].innerText,
+        emai: event.path[1].childNodes[1].innerText,
+        joba: event.path[1].childNodes[2].innerText,
+      };
+      arr2.push(obj1);
+
+      localStorage.setItem("bmark", JSON.stringify(arr2));
+
+      arr.splice(index, 1);
+      localStorage.setItem("values", JSON.stringify(arr));
+      window.location.reload();
+    }
+  </script>
+</html>
