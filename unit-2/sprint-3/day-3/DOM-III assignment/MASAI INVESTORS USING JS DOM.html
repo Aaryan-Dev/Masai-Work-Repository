@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>investors DOM</title>
+
+<style>
+*{
+    margin: 0px;
+}
+
+#fir{
+    width:70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-template-rows:repeat(3, auto);
+    gap:20px;
+}
+
+#fir>div{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#fir>div>img:nth-child(1){
+    width: 100%;
+    border-radius: 10px;
+}
+    
+
+#log{
+    width: 100px;
+}
+</style>
+
+</head>
+<body>
+    
+</body>
+</html>
+
+
+<script>
+    let firstDiv=document.createElement("div");
+    firstDiv.setAttribute("id", "fir");
+    document.querySelector("body").append(firstDiv);
+
+
+
+    let arrObj = [
+ 
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"},
+      {img: "https://masai-website-images.s3.ap-south-1.amazonaws.com/sunil_rao_amazon_dfd2daa06d.jpeg", name:"Akhil Gupta", role:"Founder & CEO", logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amazon_rect_9e0cd101b1.svg"}
+
+    ]
+
+
+    arrObj.forEach(function(elem){
+
+        let secDiv = document.createElement("div");
+        document.querySelector("div").append(secDiv);
+
+        let imga = document.createElement("img")
+        imga.setAttribute("src",elem.img)
+
+        let head5 = document.createElement("h5")
+        head5.innerText=elem.name;
+        let para = document.createElement("p")
+        para.innerText=elem.role;
+
+        let logoIt = document.createElement("img")
+        logoIt.setAttribute("Id", "log")
+        logoIt.setAttribute("src", elem.logo)
+
+
+
+        secDiv.append( imga, head5, para, logoIt);
+        
+        
+
+    })
+
+
+
+    console.log(document);
+</script>
