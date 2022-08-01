@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP page</title>
+  </head>
+  <style>
+    div {
+      width: 20%;
+      margin: auto;
+    }
+  </style>
+  <body>
+    
+      <div>
+    <h4>Enter Otp</h4>
+        <input type="number" id="otp" />
+        <br />
+        <br />
+        <button>Submit</button>
+      </div>
+    </h4>
+  </body>
+</html>
+
+<script>
+  document.querySelector("button").addEventListener("click", func);
+
+  function func() {
+    if ((document.querySelector("#otp").value = 1234)) {
+      alert("payment successful");
+    }
+  }
+</script>
