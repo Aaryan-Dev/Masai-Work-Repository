@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COUNTER USING LS</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  let counter = localStorage.currentValue || 0;
+
+  const head = document.createElement("h1");
+  head.innerText = localStorage.getItem("currentValue", counter) || 0;
+
+  const but1 = document.createElement("button");
+  but1.innerText = "Increase";
+  but1.style.marginRight = "10px";
+
+  const but2 = document.createElement("button");
+  but2.innerText = "Decrease";
+
+  document.querySelector("body").append(head, but1, but2);
+
+  but1.addEventListener("click", inc);
+  function inc() {
+    counter++;
+    head.innerText = counter;
+    localStorage.setItem("currentValue", counter);
+  }
+
+  but2.addEventListener("click", dec);
+  function dec() {
+    counter--;
+    head.innerText = counter;
+    localStorage.setItem("currentValue", counter);
+  }
+</script>
