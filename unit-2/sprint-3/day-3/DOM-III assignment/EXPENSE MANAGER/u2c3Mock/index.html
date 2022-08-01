@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>U2C3 Mock</title>
+    <style>
+
+*{
+  margin: 0px;
+  padding: 3px;
+}
+#fir{
+  margin: auto;
+  width:70%;
+     display: grid;
+     grid-template-columns:repeat(4, 1fr) ;
+     grid-template-rows: repeat(3, auto);
+     gap:30px;
+}
+
+#fir>div{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+    </style>
+  </head>
+  <body>
+    <form>
+      <select id="month">
+        <option value="January">JANUARY</option>
+        <option value="February">FEB</option>
+        <option value="MARCH">MARCH</option>
+        <option value="APRIL">APRIL</option>
+        <option value="MAY">MAY</option>
+        <option value="JUNE">JUNE</option>
+        <option value="JULY">JULY</option>
+        <option value="AUGUST">AUGUST</option>
+        <option value="SEPETEMBER">SEPETEMBER</option>
+        <option value="OCTOBER">OCTOBER</option>
+        <option value="NOVEMBER">NOVEMBER</option>
+        <option value="DECEMBER">DECEMBER</option>
+      </select>
+
+      <input id="income" type="number" placeholder="Enter Income" />
+
+      <input id="expense" type="number" placeholder="Enter expense" />
+
+      <input type="submit" />
+    </form>
+
+    <div id="report">
+          <!-- Append your cards here -->
+    </div>
+  </body>
+</html>
+
+<script>
+
+  let firDiv = document.createElement("div")
+  firDiv.setAttribute("Id", "fir")
+  document.querySelector("body").append(firDiv);
+  
+  document.querySelector("form").addEventListener("submit", func);
+  
+  function func() {
+    event.preventDefault();
+    
+    let secDiv = document.createElement("div")
+    document.querySelector("#fir").append(secDiv);
+
+    let head1 = document.createElement("h1")
+    head1.innerHTML = document.querySelector("#month").value;
+
+    let p1 = document.createElement("p")
+    p1.innerHTML = document.querySelector("#income").value;
+
+    let p2 = document.createElement("p")
+    p2.innerHTML = document.querySelector("#expense").value;
+
+    let head4 = document.createElement("p")
+    if(Number(p1.innerHTML)> Number(p2.innerHTML)){
+              head4.innerHTML = "Save"
+              head4.style.color="green"
+            }
+            
+            if(Number(p1.innerHTML)< Number(p2.innerHTML)){
+              head4.innerHTML = "Debt"
+              head4.style.color="red"
+            }
+            
+            if(Number(p1.innerHTML)== Number(p2.innerHTML)){
+              head4.innerHTML = "BReak"
+              head4.style.color="yellow"
+            }
+
+    let but = document.createElement("button")
+    but.innerText="DELETE"
+    
+    but.addEventListener("click", what);
+    
+    function what(){
+      event.target.parentNode.remove()
+    }
+    secDiv.append(head1, p1, p2, head4, but)
+    
+
+  }
+  
+</script>
