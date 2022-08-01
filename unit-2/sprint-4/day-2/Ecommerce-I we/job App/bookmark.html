@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admitted</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+  <style>
+    tr {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job Applied</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="body"></tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    let arr3 = JSON.parse(localStorage.getItem("bmark")) || [];
+
+    arr3.forEach(function (elem, index, arr) {
+      let tr = document.createElement("tr");
+      document.querySelector("#body").append(tr);
+
+      let name = document.createElement("td");
+      name.innerText = elem.dam;
+
+      let email = document.createElement("td");
+      email.innerText = elem.emai;
+
+      let ja = document.createElement("td");
+      ja.innerText = elem.joba;
+
+      let but = document.createElement("td");
+      but.addEventListener("click", function () {
+        del(index);
+      });
+      but.innerText = "Delete";
+      but.style.color = "red";
+
+      tr.append(name, email, ja, but);
+    });
+
+    function del(index) {
+      arr3.splice(index, 1);
+      localStorage.setItem("bmark", JSON.stringify(arr3));
+      window.location.reload();
+    }
+  </script>
+</html>
