@@ -1,0 +1,62 @@
+<!-- Mimic the payment system of phonePe using promises.
+The payment can be rejected or accepted
+On success show the same UI as shown on phonePe app.
+On Failure also show the same UI as shown on phonePe app.
+During the processing state show the Processing UI as shown on phonePe. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone pe</title>
+  </head>
+  <body>
+    <div id="gif">
+      <img
+        style="height: 300px"
+        src="https://c.tenor.com/UEtA7Yo7UTQAAAAC/processing.gif"
+        ;
+        alt="processing"
+      />
+    </div>
+  </body>
+</html>
+
+<script>
+  let suc = "https://c.tenor.com/PYQdx807FXAAAAAi/sucess-transparent.gif";
+  let fail =
+    "https://i.pinimg.com/originals/6e/f9/f2/6ef9f2fd6425c578274e72ce1f44a778.gif";
+
+  function bank() {
+    // return true;
+    return false;
+  }
+
+  let pay_promise = new Promise(function (resolve, reject) {
+    let status = bank();
+
+    setTimeout(function () {
+      if (status) {
+        resolve("Done");
+      } else if (status == false) {
+        reject("Falied");
+      }
+    }, 3000);
+  });
+  console.log(pay_promise);
+
+  // .then & .catch
+  let img = document.querySelector("#gif>img");
+
+  pay_promise.then(function (resolve) {
+    console.log(resolve);
+    img.src = suc;
+  });
+
+  pay_promise.catch(function (rejected) {
+    console.log(rejected);
+    img.src = fail;
+  });
+</script>
