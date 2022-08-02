@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div id="slideshow">
+      <!--Show Slideshow here-->
+      <input type="text" id="image_url" />
+      <button onclick="addImage()">Submit</button>
+      <button onclick="slideShow()">Start Slide Show</button>
+      <button>Pause</button>
+
+      <div id="slide_show"></div>
+    </div>
+
+    <div id="sort-buttons">
+      <!--Add sorting here-->
+    </div>
+    <div id="movies">
+      <!--Show list of movies here-->
+    </div>
+  </body>
+</html>
+
+<script>
+  function addImage() {
+    let image_url = document.getElementById("image_url");
+
+    let images = JSON.parse(localStorage.getItem("images")) || [];
+
+    localStorage.setItem("images", JSON.stringify("images"));
+    image_url.value = null;
+  }
+
+  let id;
+  let i = 0;
+
+  function slideShow() {
+    let images = JSON.parse(localStorage.getItem("images"));
+    let container = document.getElementById("slide_show");
+
+    id = setInterval(function () {
+      console.log(i);
+      if (i === images.length) {
+        i = 0;
+      }
+
+      let img = document.createElement("img");
+      img.src = images[i];
+      container.innerHTML = null;
+      container.append(img);
+      i++;
+    }, 2000);
+  }
+
+  function Pause() {
+    clearInterval(id);
+  }
+</script>
