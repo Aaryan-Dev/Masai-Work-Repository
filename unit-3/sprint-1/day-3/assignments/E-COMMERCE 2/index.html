@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-COMMERCE I</title>
+  </head>
+  <body>
+    <form id="form">
+      <input id="name" type="text" placeholder="Product name" />
+      <input id="category" type="text" placeholder="Category" />
+      <input id="image" type="text" placeholder="Image_Url" />
+      <input id="price" type="number" placeholder="Price" />
+
+      <select id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <select id="sold">
+        <option value="flase">Flase</option>
+        <option value="true">True</option>
+      </select>
+      <input id="add" type="submit" placeholder="submit" />
+    </form>
+  </body>
+</html>
+
+<script>
+  document.querySelector("#form").addEventListener("submit", func);
+
+  let arr = [];
+  function func() {
+    event.preventDefault();
+
+    let n = document.querySelector("#name").value;
+    let c = document.querySelector("#category").value;
+    let i = document.querySelector("#image").value;
+    let p = document.querySelector("#price").value;
+    let g = document.querySelector("#gender").value;
+    let s = document.querySelector("#sold").value;
+
+    function makeObj(n, c, i, p, g, s) {
+      this.name = n;
+      this.category = c;
+      this.img_url = i;
+      this.ptice = p;
+      this.gender = g;
+      this.status = s;
+    }
+
+    let final = new makeObj(n, c, i, p, g, s);
+    arr.push(final);
+
+    console.log(arr);
+
+    localStorage.setItem("Products", JSON.stringify(arr));
+  }
+</script>
