@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div id="slideshow">
+      <!--Show Slideshow here-->
+      <!-- <input type="text" id="image_url" />
+      <button onclick="addImage()">Submit</button>
+      <button onclick="slideShow()">Start Slide Show</button>
+      <button>Pause</button> -->
+
+      <div id="slide_show">
+        <img
+          src="https://5.imimg.com/data5/WO/LY/DM/SELLER-30220222/hollywood-movies-wall-posters-500x500.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div id="sort-buttons">
+      <!--Add sorting here-->
+    </div>
+    <div id="movies">
+      <!--Show list of movies here-->
+    </div>
+  </body>
+</html>
+
+<script>
+  let id;
+  let i = 0;
+  slideShow();
+  function slideShow() {
+    let container = document.getElementById("slide_show");
+
+    let images = [
+      "https://5.imimg.com/data5/FK/ZH/SH/SELLER-30220222/hollywood-movies-wall-posters-500x500.jpg",
+      "https://5.imimg.com/data5/JP/LH/CL/SELLER-30220222/hollywood-movies-wall-posters-500x500.jpg",
+      "https://5.imimg.com/data5/RG/JT/KW/SELLER-30220222/hollywood-movies-wall-posters-500x500.jpg",
+    ];
+
+    id = setInterval(function () {
+      console.log(i);
+      if (i === images.length) {
+        i = 0;
+      }
+
+      let img = document.createElement("img");
+      img.src = images[i];
+      container.innerHTML = null;
+      container.append(img);
+      i++;
+    }, 2000);
+  }
+
+  function Pause() {
+    clearInterval(id);
+  }
+</script>
