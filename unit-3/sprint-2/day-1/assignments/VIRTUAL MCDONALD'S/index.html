@@ -1,0 +1,132 @@
+<!-- Create a button called 'Order Food'. Create a checkbox of multiple food items you can choose from.
+When a user clicks on order food, create a promise that will resolve after random seconds.
+Once the promise is resolved, show the image of the food in the centre and show the order id on the top right corner.
+Try to make your virtual restaurant as real as possible. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mac</title>
+
+    <style>
+      body > div {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      div > div {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <img style="width: 150px" src="" alt="" />
+    <div id="main">
+      <div>
+        <img
+          src="https://www.eatthis.com/wp-content/uploads/sites/4/2021/01/mcdonalds-mcplant.jpg?quality=82&strip=all"
+          alt=""
+        />
+        <h4>
+          Double cheese Burger <br /><br />
+          $34
+        </h4>
+        <button id="wh">Order Food</button>
+      </div>
+      <div>
+        <img
+          src="https://www.eatthis.com/wp-content/uploads/sites/4/2017/06/mcdonalds-india-pizza-mcpuff.jpg"
+          alt=""
+        />
+        <h4>
+          Zingi Parcel <br /><br />
+          $12
+        </h4>
+        <button id="wha">Order Food</button>
+      </div>
+      <div>
+        <img
+          src="https://i2-prod.mirror.co.uk/incoming/article23047316.ece/ALTERNATES/s1200b/0_EnGqy-nXcAE9httjpeg.jpg"
+          alt=""
+        />
+        <h4>veg cheese Burger with french fries <br /><br />$40</h4>
+        <button id="what">Order Food</button>
+      </div>
+      <div id="id"></div>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelector("#wha").addEventListener("click", func);
+
+  let time = (Math.random() / 1.5) * 10000;
+
+  function func() {
+    document.querySelector("body > img").src =
+      "https://retchhh.files.wordpress.com/2015/03/loading1.gif";
+    let solve = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve("Done");
+      }, time);
+    });
+
+    solve.then(function (resolve) {
+      document.querySelector("body > div>div:nth-child(1)").innerHTML = "";
+      document.querySelector("body > div>div:nth-child(3)").innerHTML = "";
+      document.querySelector("body > img").src = "";
+
+      document.querySelector("#id").innerText = "Oder Id = 349";
+    });
+  }
+
+  document.querySelector("#wh").addEventListener("click", fun);
+
+  function fun() {
+    document.querySelector("body > img").src =
+      "https://retchhh.files.wordpress.com/2015/03/loading1.gif";
+    let solve = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve("Done");
+      }, time);
+    });
+
+    solve.then(function (resolve) {
+      document.querySelector("body > div>div:nth-child(2)").innerHTML = "";
+      document.querySelector("body > div>div:nth-child(3)").innerHTML = "";
+      document.querySelector("body > img").src = "";
+
+      document.querySelector("#id").innerText = "Oder Id = 348";
+    });
+  }
+  document.querySelector("#what").addEventListener("click", fu);
+
+  function fu() {
+    document.querySelector("body > img").src =
+      "https://retchhh.files.wordpress.com/2015/03/loading1.gif";
+    let solve = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve("Done");
+      }, time);
+    });
+
+    solve.then(function (resolve) {
+      document.querySelector("body > div>div:nth-child(1)").innerHTML = "";
+      document.querySelector("body > div>div:nth-child(2)").innerHTML = "";
+      document.querySelector("body > img").src = "";
+
+      document.querySelector("#id").innerText = "Oder Id = 350";
+    });
+  }
+</script>
