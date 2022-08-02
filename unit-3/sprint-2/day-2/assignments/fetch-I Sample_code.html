@@ -1,0 +1,88 @@
+<script>
+  //     Tool :- Fetch
+  // Address :- URL
+  // Destination :- Server
+
+  // API :-
+
+  let x = fetch(); // fuction
+  // Takes time
+  // Rejected or Fulfilled or Pending
+
+  console.log(x);
+
+  const url = "https://reqres.in/api/users?pge=2";
+
+  fetch(url)
+    .then(function (res) {
+      return res.json(); //collect()
+    })
+    .then(function (res) {
+      console.log(res);
+      append(res.data);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+
+  // Readablestream
+  // Readable +
+  // River :- Stream of water
+  // wind :- Stream of air// Server send you data in form of small chunks or packets.
+
+  function append(data) {
+    let container = document.getElementById("container");
+    data.forEach(function (el) {
+      let img = document.createElement("img");
+      img.src = el.avatar;
+      let p = document.createElement("p");
+      p.innerText = `${el.first_name} ${el.last_name}`;
+
+      let div = document.createElement("div");
+      div.append(img, p);
+      container.append(div);
+    });
+  }
+
+  // const url = "https://fakestoreapi.com/products";
+
+  async function getData() {
+    try {
+      let res = await fetch(url);
+      let data = await res.json();
+      append(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  getData();
+
+  function append(data) {
+    let container = document.getElementById("container");
+
+    data.sort(function (a, b) {
+      return a.price - b.price;
+    });
+
+    data = data.filter(function (el) {
+      return el.category === "jewelery";
+    });
+
+    data.forEach(function (el) {
+      let img = document.createElement("img");
+      img.src = el.image;
+
+      let p = document.createElement("p");
+      p.innerText = el.title;
+
+      let price = document.createElement("p");
+      price.innerText = el.price;
+
+      let div = document.createElement("div");
+      div.append(img, p, price);
+      container.append(div);
+    });
+  }
+</script>
