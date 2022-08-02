@@ -1,0 +1,29 @@
+<script>
+  let Amar = {
+    name: "Amar",
+    poffesion: "singer",
+    City: "Goa",
+
+    lifeStyle: function (hi, po, ci) {
+      console.log(
+        `${hi} I am ${this.name} ${this.poffesion} living in ${this.City}`
+      );
+    },
+  };
+
+  let Akbar = {
+    name: "Akbar",
+    poffesion: "Chef",
+    City: "Mumbai",
+  };
+
+  let Anthony = {
+    name: "Anthony",
+    poffesion: "Magician",
+    City: "Kashmir",
+  };
+
+  Amar.lifeStyle("Hello");
+  Amar.lifeStyle.call(Akbar, "Hi");
+  Amar.lifeStyle.call(Anthony, "Hey");
+</script>
