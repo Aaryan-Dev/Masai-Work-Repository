@@ -1,0 +1,99 @@
+<!-- Problem Statement :-
+You might have learnt about Stack data structures. It works on LIFO(last in first out) principle. In javascript this feature has been provided in the array itself. So you are curious to know how it works. So you want to implement this on your own.
+
+Description :-
+Create a custom Array constructor which will return an array object.
+It should have a property size based on the length of arguments passed.
+Add the arguments as key(index) value pairs in the Array object.
+Use the “.prototype” property to add custom methods to the Array.
+Add following methods :-
+pop push forEach map filter reduce 
+
+Bonus:
+chaining for map, filter, reduce etc should be there. for e.g arr.map().filter().reduce() -->
+
+<script>
+  let array = new Array(1, 2, 3, 4, 5, 6);
+
+  let arr = [1, 2, 4, 5, 6];
+
+  //pop()
+  Array.prototype.myPop = function () {
+    let arrPop = [];
+    for (let i = 0; i < this.length - 1; i++) {
+      arrPop.push(this[i]);
+    }
+    arr = arrPop;
+    return arr;
+  };
+  arr.myPop();
+  console.log(arr);
+
+  //Push()
+  Array.prototype.myPush = function (value) {
+    let newval = [value];
+
+    arr = arr.concat(newval);
+    return arr;
+  };
+
+  arr.myPush(8);
+  console.log(arr);
+
+  //foreach()
+  Array.prototype.myForeach = function (value) {
+    for (let i = 0; i < this.length; i++) {
+      console.log(this[i]);
+    }
+  };
+  arr.myForeach();
+
+  //map()
+  Array.prototype.myMap = function (value) {
+    newArr = [];
+    for (let i = 0; i < this.length; i++) {
+      newArr.push(this[i]);
+    }
+    arr = newArr;
+    return arr;
+  };
+
+  arr.myMap();
+  console.log(arr);
+
+  //myfilter()
+  Array.prototype.myFilter = function (value) {
+    for (let i = 0; i < this.length; i++) {
+      if (this[i] === value) {
+        console.log(this[i]);
+      }
+    }
+  };
+  arr.myFilter(5);
+
+  //myReduce()
+  var a = [10, 21, 13, 56];
+
+  function add(a, b) {
+    return a + b;
+  }
+  function foo(a, b) {
+    return a.concat(b);
+  }
+
+  Array.prototype.reduce2 = function (f, result) {
+    var i = 0;
+    if (arguments.length < 2) {
+      i = 1;
+      result = this[0];
+    }
+    for (; i < this.length; i++) {
+      result = f(result, this[i], i, this);
+    }
+    return result;
+  };
+  console.log(a.reduce(add), a.reduce2(add)); // 100 100
+  console.log(a.reduce(add, 10), a.reduce2(add, 10)); // 110 110
+  // extra test with foo:
+  console.log(a.reduce(foo, "X"), a.reduce2(foo, "X")); // X10211356 X10211356
+</script>
