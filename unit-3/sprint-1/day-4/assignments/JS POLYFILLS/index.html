@@ -1,0 +1,62 @@
+<!-- Create your custom map method (myMap), which will work exactly similar to Array.map().
+Create your custom forEach method (myForEach), which will work exactly similar to Array.forEach().
+Create your custom filter method (myFilter), which will work exactly similar to Array.filter().
+Create your custom reduce method (myReduce), which will work exactly similar to Array.reduce(). -->
+
+<script>
+  //map()
+  Array.prototype.myMap = function (value) {
+    newArr = [];
+    for (let i = 0; i < this.length; i++) {
+      newArr.push(this[i]);
+    }
+    arr = newArr;
+    return arr;
+  };
+
+  arr.myMap();
+  console.log(arr);
+
+  //foreach()
+  Array.prototype.myForeach = function (value) {
+    for (let i = 0; i < this.length; i++) {
+      console.log(this[i]);
+    }
+  };
+  arr.myForeach();
+
+  //myfilter()
+  Array.prototype.myFilter = function (value) {
+    for (let i = 0; i < this.length; i++) {
+      if (this[i] === value) {
+        console.log(this[i]);
+      }
+    }
+  };
+
+  //myReduce()
+  var a = [10, 21, 13, 56];
+
+  function add(a, b) {
+    return a + b;
+  }
+  function foo(a, b) {
+    return a.concat(b);
+  }
+
+  Array.prototype.reduce2 = function (f, result) {
+    var i = 0;
+    if (arguments.length < 2) {
+      i = 1;
+      result = this[0];
+    }
+    for (; i < this.length; i++) {
+      result = f(result, this[i], i, this);
+    }
+    return result;
+  };
+  console.log(a.reduce(add), a.reduce2(add)); // 100 100
+  console.log(a.reduce(add, 10), a.reduce2(add, 10)); // 110 110
+  // extra test with foo:
+  console.log(a.reduce(foo, "X"), a.reduce2(foo, "X")); // X10211356 X10211356
+</script>
