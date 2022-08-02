@@ -1,0 +1,57 @@
+<script>
+  // let p = new Promise(function (resolve, reject) {
+  //   reject("rejected");
+  // });
+
+  // console.log(p);
+
+  // Payment system
+  // Buffering image -----> Success Image
+  // pay -> setTimeout -> img.src = success image
+
+  function bankServer() {
+    // Logic
+    return true; //false;
+  }
+
+  let payment_promise = new Promise(function (resolve, reject) {
+    let pin = bankServer();
+
+    setTimeout(function () {
+      if (pin) {
+        resolve("Payment successfull!");
+      } else {
+        reject("Try again later.");
+      }
+    }, 3000);
+  });
+
+  // Handling the promise
+  // .then .catch
+  // async await
+
+  let image = document.getElementById("pay_img");
+
+  payment_promise.then(function (res) {
+    console.log(res);
+    image.src = "https://c.tenor.com/xVfFIHxAzW4AAAAC/success.gif";
+  });
+
+  payment_promise.catch(function (rej) {
+    console.log(rej);
+    image.src = "https://c.tenor.com/flmQIupAKBkAAAAC/steven-he-failure.gif";
+  });
+
+  // async function content() {
+  //   try {
+  //     let res = await payment_promise;
+  //     console.log(res);
+  //     image.src = "https://c.tenor.com/xVfFIHxAzW4AAAAC/success.gif";
+  //   } catch (err) {
+  //     console.log(err);
+  //     image.src = "https://c.tenor.com/flmQIupAKBkAAAAC/steven-he-failure.gif";
+  //   }
+  // }
+
+  content();
+</script>
