@@ -1,0 +1,135 @@
+<!-- How Js Works
+Level: 1
+Type: Applied
+Avg. Duration: 2 Hrs
+Problem Statement : - Throw Dice
+You and your two other team members are doing your construct week project. An issue arises in your project and all three of you come up with a solution. All the three solutions are feasible and each one of you wants to implement his own solution. Hence all of you decided to roll a dice and whoever gets the maximum score will implement his solution. But the problem is you cannot roll a dice online, so you, being an active team member, decided to make an app with three dice showing a random number between 1 to 6 as described below.
+
+Description :-
+Create an Index.html file
+Create three “DIV”, which will represent three dice and show a random number between 1 to 6.
+First will represent score for Member A
+Second will represent score for Member B
+And third will represent score for Member C
+Make a button with text content “ROLL THE DICE”
+On pressing the button all the three dice should roll and show a random number between 1 to 6.
+Make a “DIV” at the top which will show the winner
+Things to follow :-
+First dice will have id “member-1”.
+Second dice will have id “member-2”.
+Third dice will have id “member-3”.
+Roll the dice button will have id “roll”.
+The winner showing div will have id “winner”
+The winning dice will be in color green.
+The Second scorer dice will be in yellow
+And the dice who scored least should be in red.
+In case of draw make the dice scoring equal appear blue. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throw Dice</title>
+
+    <style>
+      #main {
+        margin: auto;
+        border: 1px solid black;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+      }
+      #main > div {
+        margin: auto;
+        border: 1px solid black;
+        width: 30%;
+        text-align: center;
+      }
+      #main > button {
+        margin: auto;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <b
+        ><u><big> My code will never give dices with same value 🤧</big></u></b
+      >
+      <div id="member-1">Member A</div>
+      <div id="member-2">Member B</div>
+      <div id="member-3">Member C</div>
+    </div>
+    <div id="main">
+      <button>ROLL THE DICE</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  let but = document.querySelector("#main>button");
+  but.addEventListener("click", func);
+
+  function func() {
+    let arr = [];
+    {
+      let fir = (((10 * Math.random()) % 6) + 1).toFixed();
+
+      let sec = (((10 * Math.random()) % 6) + 1).toFixed();
+      var sec1;
+      if (sec !== fir) {
+        var sec1 = sec;
+      }
+
+      let thir = (((10 * Math.random()) % 6) + 1).toFixed();
+      var thir1;
+      if (thir !== fir && thir !== sec1) {
+        var thir1 = thir;
+      }
+
+      // let thir = ((10 * Math.random()) % 6) + 1 && thir !== sec && thir !== fir;
+
+      arr.push(fir, sec1, thir1);
+
+      if (fir !== undefined && sec1 !== undefined && thir1 !== undefined) {
+        document.querySelector("#main>button").innerText = "Roll";
+        document.querySelector("#member-1").innerText = fir;
+        document.querySelector("#member-2").innerText = sec1;
+        document.querySelector("#member-3").innerText = thir1;
+
+        if (fir > sec1 && fir > thir1) {
+          document.querySelector("#member-1").style.color = "Green";
+        } else if ((fir > sec1 && fir < thir1) || (fir < sec1 && fir > thir1)) {
+          document.querySelector("#member-1").style.color = "Yellow";
+        } else {
+          document.querySelector("#member-1").style.color = "Red";
+        }
+
+        if (fir < sec1 && sec1 > thir1) {
+          document.querySelector("#member-2").style.color = "Green";
+        } else if (
+          (fir > sec1 && sec1 > thir1) ||
+          (fir < sec1 && sec1 < thir1)
+        ) {
+          document.querySelector("#member-2").style.color = "Yellow";
+        } else {
+          document.querySelector("#member-2").style.color = "Red";
+        }
+
+        if (thir1 > sec1 && fir < thir1) {
+          document.querySelector("#member-3").style.color = "Green";
+        } else if (
+          (fir > thir1 && sec1 < thir1) ||
+          (fir < thir1 && sec1 > thir1)
+        ) {
+          document.querySelector("#member-3").style.color = "Yellow";
+        } else {
+          document.querySelector("#member-3").style.color = "Red";
+        }
+      }
+    }
+  }
+</script>
