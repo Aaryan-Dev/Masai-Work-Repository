@@ -1,0 +1,143 @@
+<!-- Go to omdbapi.com , create account and explore API documentation.
+
+Create a decent UI where should be able to search for any movie they want. explore how can you make a search request.
+
+Make a fetch request and get the data depending on whatever movie you entered. Show the movie data on the app. -->
+
+<!-- API_Key ac0cf9e2 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMDB MOVIE app-I</title>
+
+    <style>
+      #main {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="Name of movie" id="mov" />
+    <button onclick="give()">Search</button>
+
+    <select id="sel" onChange="sort()">
+      <option value="">sort</option>
+      <option value="year">based on year</option>
+    </select>
+
+    <select id="lec" onChange="filter()">
+      <option value="">filter</option>
+      <option value="after 2000">movies after 2000</option>
+    </select>
+
+    <div id="what"></div>
+  </body>
+</html>
+
+<script>
+  function give() {
+    let name = document.getElementById("mov").value;
+    const url = `https://www.omdbapi.com/?apikey=ac0cf9e2&s=${name}`;
+
+    // fetch(url);
+    // console.log(fetch(url));
+
+    document.querySelector("#what").innerHTML = "";
+
+    fetch(url)
+      .then(function (res) {
+        // console.log(res);
+        return res.json();
+      })
+      .then(function (res) {
+        console.log(res.Search);
+        append(res.Search);
+      })
+      .catch(function (err) {
+        let gif = document.createElement("img");
+        gif.src =
+          "https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif";
+        document.querySelector("#what").append(gif);
+      });
+  }
+
+  function append(data) {
+    let main = document.createElement("div");
+    main.setAttribute("id", "main");
+    document.querySelector("#what").append(main);
+    data.forEach(function (elem) {
+      let div = document.createElement("div");
+      main.append(div);
+
+      let img = document.createElement("img");
+      img.src = elem.Poster;
+
+      let title = document.createElement("h3");
+      title.innerText = elem.Title + " " + elem.Year;
+
+      div.append(img, title);
+    });
+  }
+
+  function sort() {
+    let the = document.querySelector("#sel").value;
+
+    if (the == "year") {
+      document.querySelector("#what").innerHTML = "";
+      let name = document.getElementById("mov").value;
+      const url = `https://www.omdbapi.com/?apikey=ac0cf9e2&s=${name}`;
+      fetch(url)
+        .then(function (res) {
+          // console.log(res);
+          return res.json();
+        })
+        .then(function (res) {
+          console.log(res.Search);
+          res.Search.sort(function (a, b) {
+            return a.Year - b.Year;
+          });
+          append(res.Search);
+        })
+        .catch(function (err) {
+          let gif = document.createElement("img");
+          gif.src =
+            "https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif";
+          document.querySelector("#what").append(gif);
+        });
+    }
+  }
+
+  function filter() {
+    let the = document.querySelector("#lec").value;
+
+    if (the == "after 2000") {
+      document.querySelector("#what").innerHTML = "";
+      let name = document.getElementById("mov").value;
+      const url = `https://www.omdbapi.com/?apikey=ac0cf9e2&s=${name}`;
+      fetch(url)
+        .then(function (res) {
+          // console.log(res);
+          return res.json();
+        })
+        .then(function (res) {
+          console.log(res.Search);
+          let arr = res.Search.filter(function (elem) {
+            return elem.Year >= "2000";
+          });
+          append(arr);
+        })
+        .catch(function (err) {
+          let gif = document.createElement("img");
+          gif.src =
+            "https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif";
+          document.querySelector("#what").append(gif);
+        });
+    }
+  }
+</script>
