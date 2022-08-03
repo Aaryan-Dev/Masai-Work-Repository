@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>trending</title>
+
+    <style>
+      body > div {
+        margin: auto;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+      }
+
+      div > div > img {
+        width: 90%;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  let url =
+    "https://api.themoviedb.org/3/movie/popular?api_key=eadc4189cc7d3f5077327710acd02ce7&page=1";
+
+  fetch(url)
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (res) {
+      console.log(res.results);
+
+      append(res.results);
+    })
+    .catch(function (err) {});
+
+  function append(data) {
+    let main = document.createElement("div");
+    document.querySelector("body").append(main);
+
+    data.forEach(function (elem) {
+      let div = document.createElement("div");
+      main.append(div);
+
+      let img = document.createElement("img");
+      img.src = `https://image.tmdb.org/t/p/original${elem.poster_path}`;
+
+      let title = document.createElement("h3");
+      title.innerText = elem.original_title;
+      div.append(img, title);
+    });
+  }
+</script>
