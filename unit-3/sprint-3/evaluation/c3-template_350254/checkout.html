@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+
+    <style>
+      #hotel_details {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      #hotel_details > div > img {
+        width: 100%;
+      }
+      #hotel_details > div {
+        padding: 10px;
+        box-shadow: rgb(0, 0, 0) 2px 0px 3px;
+      }
+      #navbar > div > a {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Final Checkout</h1>
+    <div>
+      <!-- Append the hotel detail inside div with id: "hotel_details" -->
+
+      <div id="hotel_details"></div>
+    </div>
+    <div id="checkout">
+      <!-- - The hotel details will be appended inside div with id:- "hotel_details".
+  - The input fields will have ids:- "user_name", "user_number", "check_in" and "check_out"
+  - The book button will have id:- "book"   -->
+      <!-- On the checkout page user will input his name, number of person, check-in and out dates and the book. -->
+      <br />
+      <input type="text" id="user_name" placeholder="name" />
+      <br />
+      <input type="number" id="user_number" placeholder="number" />
+      <br />
+      <input type="text" id="check_in" placeholder="check_in" />
+      <br />
+      <input type="text" id="check_out" placeholder="check_out" />
+      <br />
+
+      <button id="book" onclick="book()">Book</button>
+    </div>
+  </body>
+</html>
+
+<script src="./scripts/checkout.js"></script>
