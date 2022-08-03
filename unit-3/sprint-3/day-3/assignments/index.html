@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <u><h3>Student</h3></u>
+
+    <h4>Log-in</h5>
+    <input id="stud" type="text" placeholder="Name" />
+    <input id="studPass" type="password" placeholder="password" />
+    <button onclick="go1()" >Submit</button>
+
+    <h5>Sign-Up</h5>
+    <input id="tud" type="text" placeholder="Name" />
+    <input id="tudPass" type="password" placeholder="password" />
+    <button onclick="go2()" >Submit</button>
+
+    <u><h3>Admin</h3></u>
+    <h5>Log-in</h5>
+    <input id="admi" type="text" placeholder="Name" />
+    <input id="admiPass" type="password" placeholder="password" />
+    <button onclick="go3()" >Submit</button>
+
+    <h5>Sign-Up</h5>
+    <input id="mi" type="text" placeholder="Name" />
+    <input id="miPass" type="password" placeholder="password" />
+    <button onclick="go4()" >Submit</button>
+  </body>
+</html>
+
+<script>
+  class User {
+    constructor(name, id) {
+      this.name = name;
+      this.id = id;
+    }
+
+    #password;
+    signup(username, password) {
+      let isValid = false;
+
+      isValid = this.#ValidUser(username) && this.#ValidId(password);
+      if (isValid) {
+        this.username = username;
+        this.#password = password;
+
+        alert("user registared")
+        console.log("user registared");
+      } else {
+        alert("failed")
+        console.log("failed");
+      }
+    }
+
+    login(us, pass) {
+      
+     let loginArr = JSON.parse(localStorage.getItem("login")) || [];
+
+     let count = 0;
+     loginArr.forEach((elem)=>{
+
+      if(us==elem.username && pass==elem.password){
+          count++
+      }else{
+
+      }
+    } )
+
+    if(count>0){
+      return true;
+      alert("sucess")
+      console.log("succsess");
+    }else{
+      return false;
+      alert("not valie")
+      console.log("not valid");
+    }
+      
+    
+    }
+
+    #ValidUser(username) {
+      //check
+      return true;
+    }
+
+    #ValidId(password) {
+      //check
+      return true;
+    }
+  }
+  // Student *****************************************************************************
+
+  class Student extends User {
+    constructor(name, id) {
+      super(name, id);
+    }
+
+    profile() {}
+  }
+  
+  let s1;
+let loginArr = JSON.parse(localStorage.getItem("login")) || [];
+  let go1 = ()=>{
+
+      let stud = document.querySelector("#stud").value
+  let studPass = document.querySelector("#studPass").value
+
+     s1 = new Student(stud, 006);
+    s1.signup(stud, studPass)
+    console.log(s1);
+
+    
+    let obj = {
+      username : stud,
+      password : studPass
+    }
+
+    loginArr.push(obj);
+    localStorage.setItem("login", JSON.stringify(loginArr));
+
+  }
+    
+    
+  let go2 = ()=>{
+
+      let tud = document.querySelector("#tud").value
+  let tudPass = document.querySelector("#tudPass").value
+s1 = new Student(tud, 006);
+let val = s1.login(tud, tudPass);
+console.log(val);
+
+if(val==true){
+
+// Students can only see the lectures and assignments section, they cannot modify it.
+// Students cannot see the student list page.
+// Students can edit their profile only (create a profile page as well)
+window.location.href = "lec.html";
+
+
+}else{
+  alert("not valid")
+}
+
+console.log(s1);
+  }
+  
+
+
+
+  // Admin *******************************************************************************
+
+  class Admin extends User {
+    constructor(name, id) {
+      super(name, id);
+    }
+
+    // ************* Student ********************
+    addStud() {}
+    removeStud() {}
+
+    // **************** Assignment *****************
+    addAss() {}
+    removeAss() {}
+
+    // ************* Lecture **********************
+    addLec() {}
+    removeLec() {}
+  }
+  
+  let s2;
+// let loginArr = JSON.parse(localStorage.getItem("sign")) || [];
+  let go3 = ()=>{
+
+      let stud = document.querySelector("#admi").value
+  let studPass = document.querySelector("#admiPass").value
+
+     s2 = new Admin(stud, 006);
+    s2.signup(stud, studPass)
+    console.log(s2);
+
+    
+    let obj = {
+      username : stud,
+      password : studPass
+    }
+
+    loginArr.push(obj);
+    localStorage.setItem("login", JSON.stringify(loginArr));
+
+  }
+    
+    
+  let go4 = ()=>{
+
+      let tud = document.querySelector("#mi").value
+  let tudPass = document.querySelector("#miPass").value
+ s2 = new Admin(tud, 006);
+  let value = s2.login(tud, tudPass)
+  
+if(value==true){
+
+//  - They can add or remove a student
+window.location.href = "student.html";
+//   - They can add or remove assignments
+//   - They can add or remove lectures
+
+// Three sections (pages) :-
+
+// - User list page where admin can see or remove any user from the list.
+// - Lecture section where admin can create and remove lecture.
+// - Assignments section where admin can create and remove assignments.
+
+
+
+}else{
+  alert("not valid")
+}
+
+
+console.log(s2);
+  }
+</script>
