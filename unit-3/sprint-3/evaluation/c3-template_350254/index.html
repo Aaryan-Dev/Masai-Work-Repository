@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #hotels_list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      #hotels_list > div > img {
+        width: 100%;
+      }
+      #hotels_list > div {
+        padding: 10px;
+        box-shadow: rgb(0, 0, 0) 2px 0px 3px;
+      }
+      #navbar > div > a {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <h2>Hotel App</h2>
+      <!-- the search-box id:- "query"
+        - the log-in and sign-up link will have ids:- "login" and "signup" -->
+      <div>
+        <a id="login" href="login.html">log-in</a>
+        <a id="signup" href="signup.html">sign-up</a>
+      </div>
+
+      <br />
+      <input id="query" type="search" placeholder="search" />
+    </div>
+    <div id="sorting">
+      <!-- sort by price low to high Id:- "sort_lth"
+ - sort by price high to low Id:- "sort_htl"
+ - Filter Ac hotels Id:- "filter_ac"
+ - Filter Non Ac hotels Id:- "filter_nonac" -->
+
+      <select id="byPrice" onchange="price()">
+        <option value="">Sort by Price</option>
+        <option id="sort_lth" value="lh">price low to high</option>
+        <option id="sort_htl" value="hl">price high to low</option>
+      </select>
+
+      <select id="byAc" onchange="ac()">
+        <option value="">Filter by AC</option>
+        <option id="filter_ac" value="ac">Ac hotels</option>
+        <option id="filter_nonac" value="nac">Non Ac hotels</option>
+      </select>
+    </div>
+    <div>
+      <!-- - Append all fetched hotels inside div with id:- "hotels_list"
+        - Every hotel card will have id:-  "hotel"
+        - The book now button will have class as "book" -->
+      <div id="hotels_list"></div>
+    </div>
+  </body>
+</html>
+
+<script src="./scripts/index.js"></script>
