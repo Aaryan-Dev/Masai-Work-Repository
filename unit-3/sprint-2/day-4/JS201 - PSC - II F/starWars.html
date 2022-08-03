@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>movie app</title>
+
+    <style>
+      #over {
+        margin: auto;
+        width: 30%;
+      }
+
+      #over > div {
+        display: flex;
+        flex-direction: column;
+        height: 300px;
+        overflow: scroll;
+      }
+      #over > div > div {
+        display: flex;
+      }
+      #over > div > div > img {
+        width: 30%;
+      }
+      #this {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="over">
+      <input
+        id="type"
+        oninput="debounce(dis, 500)"
+        type="text"
+        placeholder="type Star Wars movie"
+      />
+    </div>
+    <div id="this"></div>
+  </body>
+</html>
+
+<script>
+  function dis() {
+    let name = document.getElementById("type").value;
+
+    const url = ` https://swapi.dev/api/people/?search=${name}`;
+
+    fetch(url)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (res) {
+        console.log(res.results);
+        append(res.results);
+      })
+      .catch(function (err) {});
+  }
+
+  let main = document.createElement("div");
+  document.getElementById("over").append(main);
+
+  function append(data) {
+    document.querySelector("#over>div").innerHTML = "";
+    data.forEach(function (elem) {
+      let div = document.createElement("div");
+      main.append(div);
+
+      let title = document.createElement("h3");
+      title.innerText = elem.name;
+
+      div.append(title);
+    });
+  }
+
+  let id;
+  function debounce(dis, delay) {
+    if (id) {
+      clearTimeout(id);
+    }
+
+    id = setTimeout(function () {
+      dis();
+    }, delay);
+  }
+</script>
