@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+  </head>
+  <body onload="current()">
+    <input type="text" id="city" placeholder="City" />
+    <button onClick="show()">Get Weather</button>
+    <div id="display"></div>
+
+    <iframe
+      id="iframe"
+      width="600"
+      height="500"
+      id="gmap_canvas"
+      frameborder="0"
+      scrolling="no"
+      marginheight="0"
+      marginwidth="0"
+    ></iframe>
+  </body>
+</html>
+
+<script>
+  function show() {
+    let place = document.querySelector("#city").value;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=a8f62049e46c02aac97e09163b00e016`;
+
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        append(res.main);
+      });
+  }
+
+  let current = () => {
+    function getLocation() {
+      navigator.geolocation.getCurrentPosition(success);
+
+      function success(pos) {
+        const crd = pos.coords;
+
+        console.log("Your current position is:");
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+        getWeatherOnLocation(crd.latitude, crd.longitude);
+      }
+    }
+    getLocation();
+
+    function getWeatherOnLocation(lat, lon) {
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a8f62049e46c02aac97e09163b00e016`;
+
+      fetch(url)
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (res) {
+          console.log(res.main);
+          append(res.main);
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+  };
+
+  function append(data) {
+    let place = document.querySelector("#city").value;
+    console.log(data);
+    document.querySelector("#display").innerHTML = "";
+
+    let div = document.createElement("div");
+    document.querySelector("#display").append(div);
+
+    let humid = document.createElement("h3");
+    humid.innerText = "humidity-->" + data.humidity;
+
+    let pressure = document.createElement("h3");
+    pressure.innerText = "pressure-->" + data.pressure;
+
+    let temp = document.createElement("h3");
+    temp.innerText = "temp-->" + data.temp;
+
+    let temp_max = document.createElement("h3");
+    temp_max.innerText = "temp_max-->" + data.temp_max;
+
+    let temp_min = document.createElement("h3");
+    temp_min.innerText = "temp_min-->" + data.temp_min;
+
+    div.append(humid, pressure, temp, temp_max, temp_min);
+
+    let location = `https://maps.google.com/maps?q=${place}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+    document.querySelector("#iframe").src = location;
+  }
+</script>
