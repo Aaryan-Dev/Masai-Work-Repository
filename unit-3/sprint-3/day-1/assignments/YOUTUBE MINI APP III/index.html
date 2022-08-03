@@ -1,0 +1,129 @@
+<!-- Create a Navbar that looks exactly like Youtube.
+In the search box of the navbar, the user should be able to search for videos.
+Show the search results in a grid format, exactly as Youtube.com shows.
+Show 20 results for each video.
+Please note, search results should be thumbnails not the videos itself.
+When a user clicks on any thumbnail, take them to a new page where they can actually see the video. Use iframe embed code to show video. Use ES6 throughout. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youtube</title>
+
+    <style>
+      #display {
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+      }
+
+      #display > div > img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body onload="all()">
+    <input type="text" placeholder="Type" id="type" />
+    <button onClick="search()">Search</button>
+
+    <select id="filter" onchange="fil()">
+      <option value="">filter by category</option>
+      <option id="pen" value="Pen Movies">Pen Movies</option>
+    </select>
+
+    <div id="display"></div>
+  </body>
+</html>
+
+<script>
+  const API_KEY = "AIzaSyBXJdebwle1SASdkXZCdtzLVTeDnJeaJwM";
+
+  // "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${}&key=AIzaSyAyMsopNjKCPZrqQzD0il4Pv2ynF0EfCYg";
+
+  let all = () => {
+    let type = document.querySelector("#type").value;
+
+    const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&regionCode=IN&key=${API_KEY}`;
+
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        let data = res.items;
+        console.log(data);
+        // fil(data);
+        append(data);
+      });
+  };
+
+  let search = () => {
+    let type = document.querySelector("#type").value;
+
+    const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&regionCode=IN&q=${type}&key=${API_KEY}`;
+
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        let data = res.items;
+        console.log(data);
+        // fil(data);
+
+        append(data);
+      });
+  };
+
+  let fil = () => {
+    let type = document.querySelector("#type").value;
+    const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&regionCode=IN&q=${type}&key=${API_KEY}`;
+
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        let data = res.items;
+        let Value = document.querySelector("#pen").value;
+        if ((Value = "Pen Movies")) {
+          let Data = data.filter((elem) => {
+            return elem.snippet.channelTitle == "Pen Movies";
+          });
+          append(Data);
+        }
+      });
+  };
+
+  let append = (data) => {
+    document.querySelector("#display").innerHTML = "";
+
+    data.forEach((elem) => {
+      let div = document.createElement("div");
+      document.querySelector("#display").append(div);
+
+      let img = document.createElement("img");
+      img.src = elem.snippet.thumbnails.medium.url;
+      img.addEventListener("click", () => {
+        video(elem);
+      });
+
+      let title = document.createElement("h3");
+      title.innerText = elem.snippet.title;
+
+      div.append(img, title);
+    });
+  };
+
+  let video = (elem) => {
+    localStorage.setItem("vid", JSON.stringify(elem));
+
+    window.location.href = "video.html";
+  };
+</script>
