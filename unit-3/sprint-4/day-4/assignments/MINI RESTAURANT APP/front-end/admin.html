@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin</title>
+  </head>
+  <body>
+    <h3>Create</h3>
+
+    <input type="text" id="img" placeholder="image_url" />
+    <input type="text" id="title" placeholder="title" />
+    <input type="text" id="des" placeholder="description" />
+    <input type="number" id="num" placeholder="Price" />
+    <input type="number" id="rate" placeholder="Ratings" />
+    <input type="number" id="id" placeholder="id" />
+    <button onclick="create()">Create</button>
+
+    <h3>Read</h3>
+    <button onclick="read()">Read</button>
+
+    <div id="append"></div>
+
+    <h3>Update</h3>
+
+    <input type="text" id="up" placeholder="enter id" />
+    <input type="text" id="imgage" placeholder="image_url" />
+    <input type="text" id="tit" placeholder="title" />
+    <input type="text" id="descr" placeholder="description" />
+    <input type="number" id="numb" placeholder="Price" />
+    <input type="number" id="rat" placeholder="Ratings" />
+    <button onclick="update()">Update</button>
+
+    <h3>Delete</h3>
+    <input type="text" id="idid" placeholder="enter id" />
+    <button onclick="remove()">Delete</button>
+  </body>
+</html>
+
+<script>
+  if (
+    JSON.parse(localStorage.getItem("des")) !== "admin" ||
+    JSON.parse(localStorage.getItem("des")) == null
+  ) {
+    alert("Please login as admin");
+    window.location.href = "index.html";
+  } else {
+    const url = "http://127.0.0.1:3000/api/food";
+
+    function create() {
+      let menu = {
+        Image: document.querySelector("#img").value,
+        Title: document.querySelector("#title").value,
+        Description: document.querySelector("#des").value,
+        Price: document.querySelector("#num").value,
+        Ratings: document.querySelector("#rate").value,
+        id: document.querySelector("#id").value,
+      };
+
+      let body1 = JSON.stringify(menu);
+
+      fetch(url, {
+        method: "POST",
+        body: body1,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    }
+
+    function read() {
+      fetch(url)
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
+
+          res.forEach((elem) => {
+            let img = document.createElement("img");
+            img.src = elem.Image;
+
+            let title = document.createElement("h5");
+            title.innerText = "Title-" + elem.Title;
+
+            let des = document.createElement("h5");
+            des.innerText = "Description-" + elem.Description;
+
+            let price = document.createElement("h5");
+            price.innerText = "Price-" + elem.Price;
+
+            let rate = document.createElement("h5");
+            rate.innerText = "Ratings-" + elem.Ratings;
+
+            let id = document.createElement("h5");
+            id.innerText = "Id-" + elem.id;
+
+            document
+              .querySelector("#append")
+              .append(img, title, des, price, rate, id);
+          });
+        });
+    }
+
+    function update() {
+      let val = document.querySelector("#up").value;
+
+      fetch(`http://127.0.0.1:3000/api/food/${val}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          Image: document.querySelector("#imgage").value,
+          Title: document.querySelector("#tit").value,
+          Description: document.querySelector("#descr").value,
+          Price: document.querySelector("#numb").value,
+          Ratings: document.querySelector("#rat").value,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    }
+
+    function remove() {
+      let val = document.querySelector("#idid").value;
+
+      fetch(`http://127.0.0.1:3000/api/food/${val}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    }
+  }
+</script>
