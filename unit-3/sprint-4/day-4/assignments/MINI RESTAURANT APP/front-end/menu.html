@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>menu</title>
+
+    <style>
+      #append {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+      }
+      #append > div > img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="append"></div>
+  </body>
+</html>
+
+<script>
+  if (JSON.parse(localStorage.getItem("des")) == null) {
+    alert("Please login first");
+    window.location.href = "index.html";
+  } else {
+    fetch("http://127.0.0.1:3000/api/food")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+
+        append(res);
+      });
+    let append = (res) => {
+      res.forEach((elem) => {
+        let div = document.createElement("div");
+        document.querySelector("#append").append(div);
+
+        let img = document.createElement("img");
+        img.src = elem.Image;
+
+        let title = document.createElement("h5");
+        title.innerText = "Title-" + elem.Title;
+
+        let des = document.createElement("h5");
+        des.innerText = "Description-" + elem.Description;
+
+        let price = document.createElement("h5");
+        price.innerText = "Price-" + elem.Price;
+
+        let rate = document.createElement("h5");
+        rate.innerText = "Ratings-" + elem.Ratings;
+
+        let id = document.createElement("h5");
+        id.innerText = "Id-" + elem.id;
+
+        div.append(img, title, des, price, rate, id);
+      });
+    };
+    //else
+  }
+</script>
