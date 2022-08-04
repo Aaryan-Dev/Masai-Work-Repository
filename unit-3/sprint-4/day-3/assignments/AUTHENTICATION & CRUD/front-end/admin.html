@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin</title>
+  </head>
+  <body>
+    <h3>create</h3>
+
+    <input type="text" placeholder="roll_no" id="roll" />
+    <input type="text" placeholder="name" id="name" />
+    <button onclick="create()">create</button>
+
+    <h3>read</h3>
+    <input type="number" placeholder="roll_no" id="id" />
+    <button onclick="read()">read</button>
+
+    <div id="read"></div>
+    <div id="weed"></div>
+    <h3>update</h3>
+    <input type="text" placeholder="roll_no" id="roll2" />
+    <input type="text" placeholder="name" id="name2" />
+    <button onclick="update()">update(Put)</button>
+
+    <h3>delete</h3>
+    <input type="text" placeholder="roll_no" id="roll3" />
+    <button onclick="remove()">remove</button>
+  </body>
+</html>
+
+<script>
+  function create() {
+    let roll = document.querySelector("#roll").value;
+    let name = document.querySelector("#name").value;
+
+    let create = {
+      id: roll,
+      Name: name,
+    };
+
+    create = JSON.stringify(create);
+
+    const url = `http://127.0.0.1:3000/api/products`;
+
+    fetch(url, {
+      method: "POST",
+      body: create,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  }
+  // ***********************************************************************************************
+  function read() {
+    const url = `http://127.0.0.1:3000/api/products/${
+      document.querySelector("#id").value
+    }`;
+
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+
+        document.querySelector("#read").innerText = res.id + "   " + res.Name;
+      });
+  }
+
+  // ***********************************************************************************************
+  function update() {
+    let roll = document.querySelector("#roll2").value;
+    let name = document.querySelector("#name2").value;
+
+    create = JSON.stringify(create);
+
+    const url = `http://127.0.0.1:3000/api/products/${
+      document.querySelector("#roll2").value
+    }`;
+
+    fetch(url, {
+      method: "PATCH",
+      body: JSON.stringify(
+        // ****
+        {
+          Name: name,
+        }
+        // ****
+      ),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  }
+  // // ***********************************************************************************************
+  function remove() {
+    let roll = document.querySelector("#roll3").value;
+
+    const url = `http://127.0.0.1:3000/api/products/${
+      document.querySelector("#roll3").value
+    }`;
+
+    fetch(url, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  }
+  // ***********************************************************************************************
+  const url = `http://127.0.0.1:3000/api/products`;
+
+  fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      console.log(res);
+
+      res.forEach((elem) => {
+        let div = document.createElement("div");
+        document.querySelector("#weed").append(div);
+
+        let id = document.createElement("h5");
+        id.innerText = elem.id + " " + elem.Name;
+
+        div.append(id);
+      });
+    });
+</script>
