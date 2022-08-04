@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mini res</title>
+  </head>
+  <body>
+    <a href="admin.html">admin</a>
+    <br />
+    <a href="menu.html">menu</a>
+
+    <h3>Sign Up</h3>
+    <input id="name_sign" type="text" placeholder="name" />
+    <input id="email_sign" type="text" placeholder="email" />
+    <input id="pass_sign" type="text" placeholder="Password" />
+    <input id="user_sign" type="text" placeholder="Username" />
+    <input id="mobile_sign" type="text" placeholder="mobile" />
+    <input id="des_sign" type="text" placeholder="admin or user" />
+    <button onclick="sign()">Sign In</button>
+
+    <h3>Log In</h3>
+    <input id="user_log" type="text" placeholder="Username" />
+    <input id="pass_log" type="password" placeholder="Password" />
+    <button onclick="log()">Log In</button>
+  </body>
+</html>
+
+<script>
+  function sign() {
+    let name = document.querySelector("#name_sign").value;
+    let email = document.querySelector("#email_sign").value;
+    let password = document.querySelector("#pass_sign").value;
+    let user = document.querySelector("#user_sign").value;
+    let mobile = document.querySelector("#mobile_sign").value;
+    let des = document.querySelector("#des_sign").value;
+
+    let sign_details = {
+      name: name,
+      email: email,
+      password: password,
+      username: user,
+      mobile: mobile,
+      description: des,
+    };
+    body1 = JSON.stringify(sign_details);
+
+    fetch("https://masai-api-mocker.herokuapp.com/auth/register", {
+      method: "POST",
+      body: body1,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  }
+
+  function log() {
+    let user = document.querySelector("#user_log").value;
+    let pass = document.querySelector("#pass_log").value;
+
+    let log_details = {
+      username: user,
+      password: pass,
+    };
+
+    body2 = JSON.stringify(log_details);
+
+    fetch("https://masai-api-mocker.herokuapp.com/auth/login", {
+      method: "POST",
+      body: body2,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+        getDetails(res, log_details);
+      });
+  }
+
+  function getDetails({ token }, { username }) {
+    fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+
+        if (res.description == "admin") {
+          window.location.href = "admin.html";
+        } else {
+          window.location.href = "menu.html";
+        }
+
+        localStorage.setItem("des", JSON.stringify(res.description));
+      });
+  }
+</script>
