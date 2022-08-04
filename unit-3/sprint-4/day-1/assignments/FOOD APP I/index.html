@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food App 1</title>
+
+    <link rel="stylesheet" href="./navbar css/css.css" />
+  </head>
+  <body>
+    <div id="nav">
+      <!-- <div> -->
+
+      <!-- </div> -->
+    </div>
+    <div id="main">
+      <input type="search" id="food" placeholder="Search food" />
+      <button>Search</button>
+      <div></div>
+    </div>
+  </body>
+</html>
+
+<script type="module">
+  import { navbar, get } from "./component/module.js";
+
+  //   console.log(navbar());
+  console.log(window.location);
+
+  document.querySelector("#nav").innerHTML = navbar();
+
+  document.querySelector("button").addEventListener("click", get);
+</script>
