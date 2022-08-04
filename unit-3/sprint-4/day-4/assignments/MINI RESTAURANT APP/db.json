@@ -1,0 +1,20 @@
+{
+  "food": [
+    {
+      "Image": "https://img.freepik.com/free-photo/paneer-butter-masala-cheese-cottage-curry-served-with-rice-laccha-paratha_466689-73715.jpg?w=900&t=st=1658081328~exp=1658081928~hmac=892e30afb1628736dfe4f8ca8e2063138733687626d80693a865cd6332f7b5b7",
+      "Title": "dfbfghdsfg",
+      "Description": "dfgdfg",
+      "Price": "345",
+      "Ratings": "34534",
+      "id": "5345"
+    },
+    {
+      "Image": "https://img.freepik.com/free-photo/paneer-butter-masala-cheese-cottage-curry-served-with-rice-laccha-paratha_466689-73715.jpg?w=900&t=st=1658081328~exp=1658081928~hmac=892e30afb1628736dfe4f8ca8e2063138733687626d80693a865cd6332f7b5b7",
+      "Title": "",
+      "Description": "",
+      "Price": "",
+      "Ratings": "",
+      "id": "Ubw9trn"
+    }
+  ]
+}
