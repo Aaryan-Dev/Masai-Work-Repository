@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search results</title>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        font-weight: 400;
+      }
+      #navbar {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-around;
+      }
+      #navbar > input {
+        width: 80%;
+        background-color: rgb(243, 243, 243);
+      }
+
+      #detailed_news > div > img {
+        width: 60%;
+      }
+      #detailed_news {
+        text-align: center;
+        margin: auto;
+        width: 80%;
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Same navbar with same functionality  -->
+    <div id="navbar"></div>
+    <!-- Append results inside div with id "results"  -->
+    <div id="detailed_news"></div>
+    <!-- News divs will have class "news"  -->
+  </body>
+</html>
+
+<script type="module" src="./scripts/search.js"></script>
+
+<script>
+  let data = JSON.parse(localStorage.getItem("news"));
+
+  document.querySelector("#detailed_news").innerHTML = "";
+
+  let div = document.createElement("div");
+  div.setAttribute("class", "news");
+  document.querySelector("#detailed_news").append(div);
+
+  let img = document.createElement("img");
+  img.src = data.image;
+
+  let title = document.createElement("h3");
+  title.innerText = data.title;
+
+  let content = document.createElement("p");
+  content.style.fontWeight = "300";
+  content.innerText = data.content;
+
+  div.append(img, title, content);
+</script>
