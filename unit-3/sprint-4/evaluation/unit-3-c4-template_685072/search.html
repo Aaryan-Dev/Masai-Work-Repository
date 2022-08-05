@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search results</title>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        font-weight: 400;
+      }
+      #navbar {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-around;
+      }
+      #navbar > input {
+        width: 80%;
+        background-color: rgb(243, 243, 243);
+      }
+
+      #results > div > img {
+        width: 100%;
+      }
+      #results {
+        margin: auto;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Same navbar with same functionality  -->
+    <div id="navbar"></div>
+    <!-- Append results inside div with id "results"  -->
+    <div id="results"></div>
+    <!-- News divs will have class "news"  -->
+  </body>
+</html>
+
+<script type="module" src="./scripts/search.js"></script>
+
+<script>
+  let search = () => {
+    //   let value = document.querySelector("#search_input").value;
+
+    let value = JSON.parse(localStorage.getItem("query"));
+
+    const url = `https://masai-api.herokuapp.com/news?q=${value}`;
+    // console.log(url);
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res.articles);
+        data = res.articles;
+        append(data);
+      })
+      .catch((err) => {
+        // alert("api server error");
+      });
+  };
+
+  search();
+
+  let append = (data) => {
+    document.querySelector("#results").innerHTML = "";
+    data.forEach((elem) => {
+      let div = document.createElement("div");
+      div.setAttribute("class", "news");
+      document.querySelector("#results").append(div);
+      div.addEventListener("click", function () {
+        news(elem);
+      });
+
+      let img = document.createElement("img");
+      img.src = elem.urlToImage;
+
+      let title = document.createElement("h3");
+      title.innerText = elem.title;
+      title.style.fontWeight = "300";
+
+      let des = document.createElement("p");
+      des.innerText = elem.description;
+
+      div.append(img, title, des);
+    });
+  };
+
+  let news = (elem) => {
+    // console.log(elem);
+
+    class Store {
+      constructor(img, tit, cont) {
+        (this.image = img), (this.title = tit), (this.content = cont);
+      }
+    }
+
+    let s1 = new Store(elem.urlToImage, elem.title, elem.content);
+    console.log(s1);
+
+    localStorage.setItem("news", JSON.stringify(s1));
+
+    window.location.href = "news.html";
+  };
+</script>
