@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News App</title>
+
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        font-weight: 400;
+      }
+      #navbar {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-around;
+      }
+      #navbar > input {
+        width: 80%;
+        border: 2px solid black;
+        background-color: rgb(255, 255, 255);
+      }
+
+      #navbar > input:hover {
+        background-color: rgb(46, 46, 46);
+        color: white;
+        transition: 1s;
+      }
+
+      #sidebar {
+        display: flex;
+        width: 15%;
+        gap: 10px;
+        flex-direction: column;
+      }
+
+      #navbar + div {
+        display: flex;
+      }
+
+      #results > div > img {
+        width: 100%;
+      }
+      #results {
+        margin: auto;
+        width: 75%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+      }
+
+      button {
+        border: 0px;
+        padding: 5px;
+        background-color: rgb(59, 59, 59);
+        border-radius: 3px;
+        color: rgb(255, 255, 255);
+        border-radius: 3px;
+      }
+
+      button:hover {
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        border: 0px;
+        transition: 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Give Navbar with id "navbar"  -->
+    <!-- Navbar will have input with id search_input and a link to home page i.e. index.html -->
+
+    <div id="navbar"></div>
+
+    <!-- Sidebar will have id "sidebar"  -->
+    <div>
+      <div id="sidebar">
+        <button id="in" value="in" onclick="disin()">india</button>
+        <button id="ch" value="ch" onclick="disch()">china</button>
+        <button id="us" value="us" onclick="disus()">usa</button>
+        <button id="uk" value="uk" onclick="disuk()">uk</button>
+        <button id="nz" value="nz" onclick="disnz()">Newzeland</button>
+      </div>
+
+      <div id="results"></div>
+    </div>
+
+    <!-- Give link to top headlines of countries in sidebar with id as their country codes 
+    india :- in
+    china :- ch
+    usa :- us
+    uk : uk
+    Newzeland :- nz -->
+
+    <!-- Append results inside div with id "results"  -->
+    <!-- News divs will have class "news"  -->
+  </body>
+</html>
+
+<script type="module" src="./scripts/index.js"></script>
+
+<script>
+  let fetc = (url) => {
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res.articles);
+        data = res.articles;
+        append(data);
+      })
+      .catch((err) => {
+        // alert("api server error");
+      });
+  };
+
+  let disin = () => {
+    const url = `https://masai-api.herokuapp.com/news/top-headlines?country=in`;
+    console.log(url);
+    fetc(url);
+  };
+  disin();
+
+  let disch = (val) => {
+    const url = `https://masai-api.herokuapp.com/news/top-headlines?country=ch`;
+    console.log(url);
+    fetc(url);
+  };
+
+  let disus = (val) => {
+    const url = `https://masai-api.herokuapp.com/news/top-headlines?country=us`;
+    console.log(url);
+    fetc(url);
+  };
+
+  let disuk = (val) => {
+    const url = `https://masai-api.herokuapp.com/news/top-headlines?country=uk`;
+    console.log(url);
+    fetc(url);
+  };
+
+  let disnz = (val) => {
+    const url = `https://masai-api.herokuapp.com/news/top-headlines?country=nz`;
+    console.log(url);
+    fetc(url);
+  };
+
+  let append = (data) => {
+    document.querySelector("#results").innerHTML = "";
+    data.forEach((elem) => {
+      let div = document.createElement("div");
+      div.setAttribute("class", "news");
+      document.querySelector("#results").append(div);
+      div.addEventListener("click", function () {
+        news(elem);
+      });
+
+      let img = document.createElement("img");
+      img.src = elem.urlToImage;
+
+      let title = document.createElement("h3");
+      title.innerText = elem.title;
+      title.style.fontWeight = "300";
+
+      let des = document.createElement("p");
+      des.innerText = elem.description;
+
+      div.append(img, title, des);
+    });
+  };
+
+  let news = (elem) => {
+    // console.log(elem);
+
+    class Store {
+      constructor(img, tit, cont) {
+        (this.image = img), (this.title = tit), (this.content = cont);
+      }
+    }
+
+    let s1 = new Store(elem.urlToImage, elem.title, elem.content);
+    console.log(s1);
+
+    localStorage.setItem("news", JSON.stringify(s1));
+
+    window.location.href = "news.html";
+  };
+</script>
