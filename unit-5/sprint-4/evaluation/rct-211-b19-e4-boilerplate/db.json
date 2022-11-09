@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Shoe 1",
+      "image": "https://images.pexels.com/photos/3281608/pexels-photo-3281608.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 100,
+      "category": "Sneakers"
+    },
+    {
+      "id": 2,
+      "name": "Shoe 2",
+      "image": "https://images.pexels.com/photos/9993286/pexels-photo-9993286.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 101,
+      "category": "Loafers"
+    },
+    {
+      "id": 3,
+      "name": "Shoe 3",
+      "image": "https://images.pexels.com/photos/8378567/pexels-photo-8378567.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 102,
+      "category": "Canvas"
+    },
+    {
+      "id": 4,
+      "name": "Shoe 4",
+      "image": "https://images.pexels.com/photos/5710085/pexels-photo-5710085.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 103,
+      "category": "Boots"
+    },
+    {
+      "id": 5,
+      "name": "Shoe 5",
+      "image": "https://images.pexels.com/photos/1456733/pexels-photo-1456733.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 104,
+      "category": "Sneakers"
+    },
+    {
+      "id": 6,
+      "name": "Watch 1",
+      "image": "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 105,
+      "category": "Analog"
+    },
+    {
+      "id": 7,
+      "name": "Watch 2",
+      "image": "https://images.pexels.com/photos/2113994/pexels-photo-2113994.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 106,
+      "category": "Chronograph"
+    },
+    {
+      "id": 8,
+      "name": "Watch 3",
+      "image": "https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 107,
+      "category": "Analog"
+    },
+    {
+      "id": 9,
+      "name": "Watch 4",
+      "image": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 108,
+      "category": "Digital"
+    },
+    {
+      "id": 10,
+      "name": "Watch 5",
+      "image": "https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "price": 109,
+      "category": "Chronograph"
+    }
+  ]
+}

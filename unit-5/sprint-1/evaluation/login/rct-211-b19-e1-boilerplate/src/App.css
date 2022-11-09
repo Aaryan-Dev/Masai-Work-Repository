@@ -1,0 +1,95 @@
+.main-app {
+  min-height: calc(100vh - 10vh);
+  padding-top: 10vh;
+  color: rgb(42, 42, 42);
+}
+
+.login-wrapper {
+  border: 1px solid rgba(61, 61, 61, 0.089);
+  width: fit-content;
+  margin: auto;
+  box-shadow: 10px 10px 12px -1px rgba(0, 0, 0, 0.15);
+  min-width: 400px;
+  min-height: 600px;
+  border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://images.unsplash.com/photo-1524055988636-436cfa46e59e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGdyZWVuZXJ5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60");
+}
+
+.welcome-text {
+  font-weight: 300;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.welcome-text ~ div {
+  font-weight: 600;
+}
+
+.email-wrapper {
+  padding: 0 35px 10px 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.email-wrapper > label {
+  min-width: 100px;
+  padding-bottom: 5px;
+  color: rgb(70, 70, 70);
+}
+
+.email-wrapper > input {
+  font-size: 18px;
+}
+
+.password-wrapper {
+  padding: 0 35px 10px 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.password-wrapper > label {
+  min-width: 100px;
+  padding-bottom: 5px;
+  color: rgb(70, 70, 70);
+}
+
+.password-wrapper > input {
+  font-size: 18px;
+}
+
+.submit-button-wrapper {
+  margin: 5px 35px;
+}
+
+.submit-button-wrapper > button {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 17px;
+  outline: none;
+  background: rgba(68, 115, 25, 1);
+  color: white;
+  border: 1px solid green;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-button-wrapper > button:hover {
+  background-color: rgb(18, 51, 4);
+}
+
+.social-media-icons {
+  display: flex;
+  flex-direction: column;
+  width: 25px;
+  gap: 15px;
+  margin-top: 30px;
+  margin-left: 35px;
+}
+
+.social-media-icons img {
+  height: 25px;
+  cursor: pointer;
+}

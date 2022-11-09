@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "learn react, redux, cypress, typescript",
+      "status": "true"
+    },
+    {
+      "id": 2,
+      "title": "asd",
+      "status": false
+    },
+    {
+      "id": 3,
+      "title": "asdasdsaxas",
+      "status": false
+    },
+    {
+      "id": 4,
+      "title": "asdasdsaxasasax",
+      "status": false
+    }
+  ]
+}
