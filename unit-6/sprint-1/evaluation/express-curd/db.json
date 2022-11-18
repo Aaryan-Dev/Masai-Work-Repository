@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "status": "done",
+            "item": "book",
+            "price": "800"
+        },
+        {
+            "id": 2,
+            "status": "done",
+            "item": "car",
+            "price": "9000000"
+        },
+        {
+            "id": 3,
+            "status": "done",
+            "item": "shirt",
+            "price": "6000"
+        }
+    ]
+}
