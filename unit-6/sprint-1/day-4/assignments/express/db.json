@@ -1,0 +1,23 @@
+{
+    "todos": [],
+    "posts": [],
+    "products": [
+        {
+            "id": 7,
+            "item": "this"
+        },
+        {
+            "id": 9,
+            "item": "this"
+        },
+        {
+            "id": 2,
+            "item": "that"
+        },
+        {
+            "id": 20,
+            "product": "safe",
+            "category": "kids"
+        }
+    ]
+}
