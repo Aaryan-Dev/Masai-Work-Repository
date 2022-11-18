@@ -1,0 +1,31 @@
+Checkout the sample database Here
+Import this json into your mongodb collection.
+Write following queries:
+Find all the countries in region "Asia"
+Find all the countries with currency: "EUR"
+Find all the countries whose timezone's gmtOffset is 3600
+Find all the countries whose timezone's gmtOffset is 3600 AND timezone name is Central European Time (or CET)
+Find All the countries with more than 1 time zone (hint: size of array)
+Find All the countries with "Korean" translation (KR)
+Work with the data, use rest of the operators to find any other data for practice you want
+
+Answer---
+
+mongosh
+show dbs
+use country
+db.info.CURD
+db.info.insertMany([Array])
+db.info.find({region: "Asia"})
+db.info.find({currency: "EUR"})
+db.info.find({"timezones.gmtOffset": 3600})
+db.info.find({"timezones.gmtOffset": 3600, "timezones.tzName":"Central European Time"})
+db.info.aggregate([
+{
+$project: {
+item: 1,
+numberOfTimeZones: {$size: "$timezones"}
+}
+}
+])
+db.info.find({"translations.kr": {$exists: true}})

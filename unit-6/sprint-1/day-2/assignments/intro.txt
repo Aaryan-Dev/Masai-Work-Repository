@@ -1,0 +1,32 @@
+//Nodejs
+
+JS -> meant to only run in the browser -> v8 engine
+Backend -> JS
+
+Ryan -> make JS run outside the browser as well
+           -> Backend for your application
+           -> scripts
+         
+          -> Node - environment to make JS run outside the browser as well
+
+               Node -  [v8 engine + more things to access our computer,read files/write files, access cpus, n/w connections ]
+               Deno - Ryan
+               Bun.sh
+
+
+
+
+
+
+REPL - Read, Eval, Print, Loop
+
+
+Export Import -> CJS  
+         
+1. ex/import -> local files
+
+2. import -> inbuilt Node "more things"
+       //os - operating system
+       //fs - file system to read/write files
+
+3. ex/import -> online/library

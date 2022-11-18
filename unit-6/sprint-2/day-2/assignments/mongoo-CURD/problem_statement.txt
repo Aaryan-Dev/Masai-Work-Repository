@@ -1,0 +1,30 @@
+Have the following Json: link
+
+Store it in your mongo collection. give it any name. after storing write the following queries to fetch the data: paste these queries in document, and upload the document (text file is fine)
+
+All users whose gender is male
+all users whose ID is even
+Users who currently live in Japan
+Users who are female and live in India
+Users who are more than 25 years old
+Users who are less than 50 years old and live in United State
+Total number of users who want to relocate to France (count only)
+Total number of users who are from USA and want to relocate to russia, sort them by age in ascending order
+get all users, sort them by total number of family member ASC and age DESC order
+
+//💫 Answer :-
+mongosh
+show dbs
+use member
+db.collection.CURD
+db.collection.insertMany([Array]))
+db.collection.find({gender:"Male"})
+db.collection.find({id : {$mod : [2,0]}})
+db.collection.find({native:"Japan"})
+db.collection.find({gender:"Female", native: "India"})
+db.collection.find({age: {$gt: 25}})
+db.collection.find({age: {$lt: 50}, native: "United States"})
+db.collection.countDocuments({relocate_to: 'France'})
+db.collection.countDocuments({relocate_to: 'Russia', native: "United States"})
+db.collection.find({relocate_to: 'Russia', native: "United States"}).sort({age:1})
+db.collection.find({}).sort({age:-1, family_members: 1})
