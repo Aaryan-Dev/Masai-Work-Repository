@@ -64,7 +64,7 @@ function display(registered_data) {
 }
 // **************************************************************
 
-function reload() {
+function reset() {
   document.querySelector("tbody").innerText = "";
   document.querySelector("#filter_v").value = "";
   document.querySelector("#filter_v").focus();

@@ -35,7 +35,7 @@ function display(booked) {
 }
 // **************************************************************
 
-function reload() {
+function reset() {
   document.querySelector("tbody").innerText = "";
   document.querySelector("#filter_v").value = "";
   document.querySelector("#filter_v").focus();
