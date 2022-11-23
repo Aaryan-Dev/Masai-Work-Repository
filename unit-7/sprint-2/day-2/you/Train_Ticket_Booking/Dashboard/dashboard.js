@@ -1,6 +1,13 @@
 let registered_data = JSON.parse(localStorage.getItem("registered")) || [];
 let vaccinated = JSON.parse(localStorage.getItem("vaccinated")) || [];
 
+// age: "34";
+// from_station: "Hyderabad";
+// id: "3";
+// name: "343434";
+// seat_type: "Sleeper Class";
+// to_station: "Pune";
+
 display(registered_data);
 
 function display(registered_data) {
@@ -15,46 +22,40 @@ function display(registered_data) {
     name.innerText = el.name;
     let age = document.createElement("td");
     age.innerText = el.age;
-    let designation = document.createElement("td");
-    designation.innerText = el.designation;
-    let priortity = document.createElement("td");
-    priortity.innerText = el.priority;
-    let vaccine = document.createElement("td");
-    vaccine.innerText = el.vaccine;
+    let date = document.createElement("td");
+    date.innerText = el.date;
+    let from_station = document.createElement("td");
+    from_station.innerText = el.from_station;
+    let to_station = document.createElement("td");
+    to_station.innerText = el.to_station;
+    let seat_type = document.createElement("td");
+    seat_type.innerText = el.seat_type;
 
-    let delet = document.createElement("td");
-    delet.innerText = "delete";
-    delet.style.background = "red";
-    delet.style.color = "white";
-    delet.addEventListener("click", () => deleteIt(index));
+    let Reject = document.createElement("td");
+    Reject.innerText = "Reject";
+    Reject.style.background = "red";
+    Reject.style.color = "white";
+    Reject.addEventListener("click", () => deleteIt(index));
 
-    let vaccinate = document.createElement("td");
-    vaccinate.innerText = "Vaccinate";
-    vaccinate.style.color = "white";
-    vaccinate.style.background = "green";
-    vaccinate.addEventListener("click", () => vaccinateIt(index));
+    let Confirm = document.createElement("td");
+    Confirm.innerText = "Confirm";
+    Confirm.style.color = "white";
+    Confirm.style.background = "green";
+    Confirm.addEventListener("click", () => vaccinateIt(index));
 
     let otp = document.createElement("td");
-    let input = document.createElement("input");
-    let button = document.createElement("button");
-    button.innerText = "Enter OTP";
-    button.addEventListener("click", () => validate_otp(index));
-
-    input.setAttribute("id", "otp_input");
-
-    input.type = "number";
-    input.placeholder = "Enter the OTP";
-    otp.append(input, button);
+    otp.setAttribute("id", "otp_input");
 
     firRow.append(
       id,
       name,
       age,
-      designation,
-      priortity,
-      vaccine,
-      delet,
-      vaccinate,
+      date,
+      from_station,
+      to_station,
+      seat_type,
+      Reject,
+      Confirm,
       otp
     );
   });
@@ -79,7 +80,7 @@ function filter_vaccine() {
   document.querySelector("tbody").innerText = "";
   display(filter_by_vaccine);
 
-  console.log(filter_by_vaccine);
+  // console.log(filter_by_vaccine);
 }
 function sort_age() {
   const way = document.querySelector("#sort").value;
@@ -116,7 +117,7 @@ function filter_prioroty() {
   document.querySelector("tbody").innerText = "";
   display(filter_by_Prioroity);
 
-  console.log(filter_by_Prioroity);
+  // console.log(filter_by_Prioroity);
 }
 // ***************************************************************************
 function deleteIt(index) {
@@ -131,36 +132,55 @@ function deleteIt(index) {
 var storeed_otp = null;
 
 function vaccinateIt(index) {
-  let otp = (Math.random() * 10000).toFixed(0);
+  // let otp = String((Math.random() * 10000).toFixed(0));
+  let what_otp = String(Math.random());
 
-  storeed_otp = otp;
+  let one = what_otp.split(".")[1].split("")[0];
+  let two = what_otp.split(".")[1].split("")[1];
+  let three = what_otp.split(".")[1].split("")[2];
+  let four = what_otp.split(".")[1].split("")[3];
+
+  let otp = one + two + three + four;
   // console.log(otp);
-
-  document.querySelector("#otp_input").focus();
-
   storeed_otp = otp;
 
-  alert("OTP is - " + otp);
+  let otpbox = document.querySelectorAll("#otp_input");
+
+  for (let i = 0; i < otpbox.length; i++) {
+    otpbox[i].style.background = "white";
+    otpbox[i].innerText = "";
+  }
+
+  document.querySelectorAll("#otp_input")[index].innerText = otp;
+  document.querySelectorAll("#otp_input")[index].style.color = "white";
+  document.querySelectorAll("#otp_input")[index].style.background = "black";
+
+  setTimeout(() => {
+    validate_otp(index, storeed_otp);
+  }, 200);
 }
 
-const validate_otp = (index) => {
-  console.log(storeed_otp);
-  if (document.querySelector("#otp_input").value == storeed_otp) {
-    alert(registered_data[index].name + " Added to Queue");
-
+const validate_otp = (index, storeed_otp) => {
+  let get_otp = prompt("Enter the OTP");
+  if (get_otp === storeed_otp) {
+    alert(registered_data[index].name + " added to waiting list");
     setTimeout(() => {
-      alert("Vaccinating " + registered_data[index].vaccine);
+      alert(
+        "Booking ticket from " +
+          registered_data[index].from_station +
+          " to " +
+          registered_data[index].to_station
+      );
     }, 5000);
-
     setTimeout(() => {
-      alert(registered_data[index].name + " Vaccinated");
+      alert("Ticket booked for " + registered_data[index].date);
       vaccinated.push(registered_data[index]);
-      localStorage.setItem("vaccinated", JSON.stringify(registered_data));
+      localStorage.setItem("booked", JSON.stringify(registered_data));
       registered_data.splice(index, 1);
       localStorage.setItem("registered", JSON.stringify(registered_data));
       location.reload();
     }, 10000);
   } else {
-    alert("otp is wrong");
+    alert("OTP is wrong");
   }
 };
