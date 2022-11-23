@@ -43,13 +43,13 @@ function reload() {
   document.querySelector("#sort").focus();
   document.querySelector("#sort_p").value = "";
   document.querySelector("#sort_p").focus();
-  display(registered_data);
+  display(booked);
 }
 
 function filter_seat() {
   const way = document.querySelector("#filter_v").value;
 
-  let filter_by_vaccine = registered_data.filter((el) => el.seat_type === way);
+  let filter_by_vaccine = booked.filter((el) => el.seat_type === way);
   document.querySelector("tbody").innerText = "";
   display(filter_by_vaccine);
 
@@ -58,7 +58,7 @@ function filter_seat() {
 function sort_age() {
   const way = document.querySelector("#sort").value;
   if (way == "asc") {
-    let asc_sort = registered_data.sort(function (a, b) {
+    let asc_sort = booked.sort(function (a, b) {
       if (Number(a.age) - Number(b.age) < 0) {
         return 1;
       } else if (Number(a.age) - Number(b.age) > 0) {
@@ -70,7 +70,7 @@ function sort_age() {
     document.querySelector("tbody").innerText = "";
     display(asc_sort);
   } else {
-    let desc_sort = registered_data.sort(function (a, b) {
+    let desc_sort = booked.sort(function (a, b) {
       if (Number(a.age) - Number(b.age) < 0) {
         return -1;
       } else if (Number(a.age) - Number(b.age) > 0) {
@@ -86,7 +86,7 @@ function sort_age() {
 function sort_date() {
   const way = document.querySelector("#sort_p").value;
   if (way == "asc") {
-    let asc_sort = registered_data.sort(function (a, b) {
+    let asc_sort = booked.sort(function (a, b) {
       if (a.date < b.date) {
         return 1;
       } else if (a.date > b.date) {
@@ -98,7 +98,7 @@ function sort_date() {
     document.querySelector("tbody").innerText = "";
     display(asc_sort);
   } else {
-    let desc_sort = registered_data.sort(function (a, b) {
+    let desc_sort = booked.sort(function (a, b) {
       if (a.date > b.date) {
         return 1;
       } else if (a.date < b.date) {
@@ -112,67 +112,3 @@ function sort_date() {
   }
 }
 // ***************************************************************************
-function deleteIt(index) {
-  // alert(index);
-  registered_data.splice(index, 1);
-
-  localStorage.setItem("registered", JSON.stringify(registered_data));
-
-  location.reload();
-}
-
-var storeed_otp = null;
-
-function vaccinateIt(index) {
-  // let otp = String((Math.random() * 10000).toFixed(0));
-  let what_otp = String(Math.random());
-
-  let one = what_otp.split(".")[1].split("")[0];
-  let two = what_otp.split(".")[1].split("")[1];
-  let three = what_otp.split(".")[1].split("")[2];
-  let four = what_otp.split(".")[1].split("")[3];
-
-  let otp = one + two + three + four;
-  // console.log(otp);
-  storeed_otp = otp;
-
-  let otpbox = document.querySelectorAll("#otp_input");
-
-  for (let i = 0; i < otpbox.length; i++) {
-    otpbox[i].style.background = "white";
-    otpbox[i].innerText = "";
-  }
-
-  document.querySelectorAll("#otp_input")[index].innerText = otp;
-  document.querySelectorAll("#otp_input")[index].style.color = "white";
-  document.querySelectorAll("#otp_input")[index].style.background = "black";
-
-  setTimeout(() => {
-    validate_otp(index, storeed_otp);
-  }, 200);
-}
-
-const validate_otp = (index, storeed_otp) => {
-  let get_otp = prompt("Enter the OTP");
-  if (get_otp === storeed_otp) {
-    alert(registered_data[index].name + " added to waiting list");
-    setTimeout(() => {
-      alert(
-        "Booking ticket from " +
-          registered_data[index].from_station +
-          " to " +
-          registered_data[index].to_station
-      );
-    }, 5000);
-    setTimeout(() => {
-      alert("Ticket booked for " + registered_data[index].date);
-      vaccinated.push(registered_data[index]);
-      localStorage.setItem("booked", JSON.stringify(registered_data));
-      registered_data.splice(index, 1);
-      localStorage.setItem("registered", JSON.stringify(registered_data));
-      location.reload();
-    }, 10000);
-  } else {
-    alert("OTP is wrong");
-  }
-};

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Booked</title>
 
     <link rel="stylesheet" href="./booking.css" />
   </head>
@@ -16,29 +16,37 @@
     </div>
     <hr />
 
-    <div id="registered_data">
+    <div id="booked_data">
       <div id="filter_sort">
-        <select id="filter_v" onchange="filter_seat()">
-          <option value="">Filter By Seat Type</option>
-          <option value="AC First Class">AC First Class</option>
-          <option value="Sleeper Class">Sleeper Class</option>
-          <option value="Second Class">Second Class</option>
-          <option value="General">General</option>
-        </select>
+        <div>
+          <select id="filter_v" onchange="filter_seat()">
+            <option value="">Filter By Seat Type</option>
+            <option value="AC First Class">AC First Class</option>
+            <option value="Sleeper Class">Sleeper Class</option>
+            <option value="Second Class">Second Class</option>
+            <option value="General">General</option>
+          </select>
+        </div>
 
-        <select id="sort" onchange="sort_age()">
-          <option value="">Sort by age</option>
-          <option value="asc">High to Low</option>
-          <option value="desc">Low to High</option>
-        </select>
+        <div>
+          <select id="sort" onchange="sort_age()">
+            <option value="">Sort by age</option>
+            <option value="asc">High to Low</option>
+            <option value="desc">Low to High</option>
+          </select>
+        </div>
 
-        <select id="sort_p" onchange="sort_date()">
-          <option value="">Sort by Date</option>
-          <option value="asc">High to Low</option>
-          <option value="desc">Low to High</option>
-        </select>
+        <div>
+          <select id="sort_p" onchange="sort_date()">
+            <option value="">Sort by Date</option>
+            <option value="asc">High to Low</option>
+            <option value="desc">Low to High</option>
+          </select>
+        </div>
 
-        <button onclick="reload()">Reset</button>
+        <div>
+          <button onclick="reload()">Reset</button>
+        </div>
       </div>
       <br />
 

@@ -35,6 +35,7 @@ function display(registered_data) {
     Reject.innerText = "Reject";
     Reject.style.background = "red";
     Reject.style.color = "white";
+    Reject.setAttribute("class", "pointer");
     Reject.addEventListener("click", () => deleteIt(index));
 
     let Confirm = document.createElement("td");
@@ -42,6 +43,7 @@ function display(registered_data) {
     Confirm.style.color = "white";
     Confirm.style.background = "green";
     Confirm.addEventListener("click", () => vaccinateIt(index));
+    Confirm.setAttribute("class", "pointer");
 
     let otp = document.createElement("td");
     otp.setAttribute("id", "otp_input");
