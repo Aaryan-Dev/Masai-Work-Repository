@@ -18,3 +18,12 @@
 
 }
 
+#filter_sort{
+
+    margin: auto;
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
