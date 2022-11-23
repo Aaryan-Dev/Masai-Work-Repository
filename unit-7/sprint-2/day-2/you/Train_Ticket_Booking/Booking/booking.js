@@ -1,5 +1,7 @@
 // let registered_data = JSON.parse(localStorage.getItem("registered")) || [];
-let vaccinated = JSON.parse(localStorage.getItem("vaccinated")) || [];
+let vaccinated = JSON.parse(localStorage.getItem("booked")) || [];
+
+console.log(vaccinated);
 
 display(vaccinated);
 
