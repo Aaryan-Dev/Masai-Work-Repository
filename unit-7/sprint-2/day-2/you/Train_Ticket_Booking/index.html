@@ -17,7 +17,7 @@
     <hr />
     <div>
       <form id="form" onsubmit="validate()">
-        <div id="go">Register for vaccination</div>
+        <div id="go">Register for Booking Tickets</div>
         <div>
           <p>Id</p>
           <input id="id" type="number" placeholder="Id" />
@@ -34,8 +34,18 @@
         </div>
 
         <div>
-          <p>Designation</p>
-          <label for="101">
+          <p>From Station:</p>
+
+          <select id="from_station" onchange="from()">
+            <option value="">Select</option>
+            <option value="Banglore">Banglore</option>
+            <option value="Pune">Pune</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+          </select>
+
+          <!-- <label for="emp">
             <input
               id="emp"
               type="radio"
@@ -45,7 +55,7 @@
             />
             Employee
           </label>
-          <label for="102">
+          <label for="std">
             <input
               id="std"
               type="radio"
@@ -54,32 +64,39 @@
               value="Employee"
             />
             Student
-          </label>
+          </label> -->
         </div>
 
         <div>
-          <p>Priority</p>
-          <select id="prior" onchange="priority()">
+          <p>To Station:</p>
+          <select id="to_station" onchange="to()">
             <option value="">Select</option>
-            <option value="p0">p0</option>
-            <option value="p1">p1</option>
-            <option value="p2">p2</option>
-            <option value="p3">p3</option>
+            <option value="Banglore">Banglore</option>
+            <option value="Pune">Pune</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
           </select>
         </div>
 
         <div>
-          <p>Name of Vaccine</p>
-          <select id="vaccine" onchange="vaccinity()">
-            <option value="">Select</option>
-            <option value="Covishield">Covishield</option>
-            <option value="Covaxin">Covaxin</option>
-            <option value="Sputnik">Sputnik</option>
-          </select>
+          <p>Journey Date:</p>
+          <input id="date" type="date" />
         </div>
 
         <div>
-          <input type="submit" placeholder="submit" />
+          <p>Seat Type:</p>
+          <select id="seat" onchange="book_seat()">
+            <option value="">Select</option>
+            <option value="AC First Class">AC First Class</option>
+            <option value="Sleeper Class">Sleeper Class</option>
+            <option value="Second Class">Second Class</option>
+            <option value="General">General</option>
+          </select>
+        </div>
+
+        <div id="submit">
+          <input type="submit" placeholder="Register" value="Register" />
         </div>
       </form>
     </div>
