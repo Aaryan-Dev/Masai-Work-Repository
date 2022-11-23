@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registerd</title>
+
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="#">Register</a>
+      <a href="./Dashboard/dashboard.html">Dashboard</a>
+      <a href="./Booking/Booking.html">Booking</a>
+    </div>
+    <hr />
+    <div>
+      <form id="form" onsubmit="validate()">
+        <div id="go">Register for vaccination</div>
+        <div>
+          <p>Id</p>
+          <input id="id" type="number" placeholder="Id" />
+        </div>
+
+        <div>
+          <p>Name</p>
+          <input id="name" type="text" placeholder="Name" />
+        </div>
+
+        <div>
+          <p>Age</p>
+          <input id="age" type="number" placeholder="Age" />
+        </div>
+
+        <div>
+          <p>Designation</p>
+          <label for="101">
+            <input
+              id="emp"
+              type="radio"
+              placeholder="Employee"
+              name="role"
+              value="Employee"
+            />
+            Employee
+          </label>
+          <label for="102">
+            <input
+              id="std"
+              type="radio"
+              placeholder="Student"
+              name="role"
+              value="Employee"
+            />
+            Student
+          </label>
+        </div>
+
+        <div>
+          <p>Priority</p>
+          <select id="prior" onchange="priority()">
+            <option value="">Select</option>
+            <option value="p0">p0</option>
+            <option value="p1">p1</option>
+            <option value="p2">p2</option>
+            <option value="p3">p3</option>
+          </select>
+        </div>
+
+        <div>
+          <p>Name of Vaccine</p>
+          <select id="vaccine" onchange="vaccinity()">
+            <option value="">Select</option>
+            <option value="Covishield">Covishield</option>
+            <option value="Covaxin">Covaxin</option>
+            <option value="Sputnik">Sputnik</option>
+          </select>
+        </div>
+
+        <div>
+          <input type="submit" placeholder="submit" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script src="./index.js"></script>

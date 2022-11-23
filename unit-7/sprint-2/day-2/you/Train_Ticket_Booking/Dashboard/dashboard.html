@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="../index.html">Register</a>
+      <a href="#">Dashboard</a>
+      <a href="../Booking/booking.html">Booking</a>
+    </div>
+    <hr />
+
+    <div id="registered_data">
+      <div id="filter_sort">
+        <select id="filter_v" onchange="filter_vaccine()">
+          <option value="">Filter By Vaccine</option>
+          <option value="Covishield">Covishield</option>
+          <option value="Covaxin">Covaxin</option>
+          <option value="Sputnik">Sputnik</option>
+        </select>
+
+        <select id="sort" onchange="sort_age()">
+          <option value="">Sort by age</option>
+          <option value="asc">High to Low</option>
+          <option value="desc">Low to High</option>
+        </select>
+
+        <select id="filter_p" onchange="filter_prioroty()">
+          <option value="">Filter By Priority</option>
+          <option value="p0">p0</option>
+          <option value="p1">p1</option>
+          <option value="p2">p2</option>
+          <option value="p3">p3</option>
+        </select>
+
+        <button onclick="reload()">Reset</button>
+      </div>
+      <br />
+
+      <table border="2">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Designation</th>
+            <th>Priority</th>
+            <th>Vaccine</th>
+            <th>delete</th>
+            <th>vaccinate</th>
+            <th>OTP</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </body>
+</html>
+<script src="./dashboard.js"></script>

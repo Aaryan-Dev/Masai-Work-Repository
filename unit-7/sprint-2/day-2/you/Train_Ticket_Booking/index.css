@@ -1,0 +1,35 @@
+#navbar {
+
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#form{
+
+    margin: auto;
+    width: 30%;
+    justify-content: center;
+    /* align-items: center; */
+    /* align-content: center; */
+    display: flex;
+
+    border: 1px solid black;
+    flex-direction: column;
+}
+
+#form>div{
+    padding: 1%;
+    border: 1px solid rgb(192, 192, 192);
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#go{
+
+    background-color: black;
+    color: white;
+
+}
