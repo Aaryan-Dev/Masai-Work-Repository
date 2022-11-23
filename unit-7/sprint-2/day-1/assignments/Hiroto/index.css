@@ -1,0 +1,495 @@
+*{
+
+    padding: 0px;
+    margin: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+
+
+#hero-section>div:nth-child(2) {
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 10vh;
+    
+        }
+    
+        #hero-section>div:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+                                         #gallary-section>div:nth-child(3)>div {
+                                             margin: auto;
+                                             display: grid;
+                                             grid-template-columns: repeat(1, 1fr);
+                                             grid-template-rows: repeat(4, 1fr);
+                                             gap: 10vh;
+                    
+                                         }
+
+}
+
+
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+
+#hero-section>div:nth-child(2) {
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        gap: 10vh;
+
+    }
+
+    #hero-section>div:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+        }
+
+                #gallary-section>div:nth-child(3)>div {
+               margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10vh;
+
+                }
+
+
+
+}
+
+
+#navbar{
+
+    display: flex;
+    flex-direction: column;
+    /* border: 5px solid black; */
+    
+}
+
+
+#navbar>div:nth-child(1){
+    margin: auto;
+    width: 80%;
+    display: flex;
+    /* border: 1px solid rgb(228, 146, 146); */
+    justify-content: space-between;
+}
+
+.same{
+    display: flex;
+    /* width: 10%; */
+    justify-content: space-between;
+}
+
+.same>div {
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+    /* border: 1px solid red; */
+}
+#flag>img{
+    width: 20%;
+}
+
+#register{
+    width: 30%;
+}
+
+#navbar>div:nth-child(2)>div{
+    margin: auto;
+    /* border: 1px solid orange; */
+width: 80%;
+    display: flex;
+    justify-content: space-around;
+
+}
+#routes{
+    width: 100%;
+    background-color: rgb(26, 26, 26);
+}
+
+#routes>div>div>a {
+
+    text-decoration: none;
+    color: white;
+
+}
+#routes>div>div{
+    display: flex;
+    background-color: rgb(26, 26, 26);
+    justify-content: space-between;
+     align-items: center;
+}
+
+#routes>div>div:nth-child(1) {
+
+    width: 20%;
+    /* border: 1px solid green; */
+}
+#routes>div>div:nth-child(2) {
+  
+    width: 80%;
+    /* border: 1px solid blue; */
+    
+}
+
+#hero-section{
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#hero-section>div{
+
+    /* border: 2px solid green; */
+    margin: auto;
+    width: 80%;
+
+}
+
+#hero-section>div:nth-child(1){
+margin: auto;
+    display: flex;
+    justify-content: space-between;
+  margin-bottom: 5%;
+}
+
+#about{
+ width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#about>div {
+    margin: 2%;
+}
+
+#house{
+    width: 40%;
+}
+#house>img{
+    width: 100%;
+
+}
+
+#grid-it{
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10vh;
+
+}
+
+#grid-it>div>div {
+
+    margin: 2%;
+
+}
+
+#grid-it>div>div:nth-child(2){
+    font-weight: 900;
+}
+
+#gallary-section{
+margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#gallary-section>div {
+    /* width: 100%; */
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+
+}
+
+#gallary-section>div:nth-child(3)>div{
+    width: 25%;
+    display: flex;
+    color: white;
+    font-weight: 900;
+    font-size: 18px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 400px;
+    margin: 1%;
+    background-image: url("https://plus.unsplash.com/premium_photo-1667764479102-65129f45f21c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=414&q=80");
+    background-image: url("./hotel-hall-101634_1280.jpg");
+
+}
+
+#gallary-section>div:nth-child(3)>div:hover{
+    display: flex;
+    align-items: flex-start;
+    
+}
+
+
+.yellow{
+   font-weight: 600;
+    color: orange;
+    
+}
+
+.black{
+    
+    color: rgb(0, 0, 0);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px
+}
+
+#gallary-view{
+
+    margin: auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    
+
+}
+
+#gallary-view>div {
+margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+}
+
+#gallary{
+    margin: auto;
+    width: 50%;
+}
+
+#view{
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+#pics>div{
+
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 24%;
+
+}
+
+#pics>div>img{
+
+    width: 100%;
+
+}
+
+
+#blog-section {
+margin: auto;
+margin-top: 5%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+
+}
+
+#blog-section>div{
+    
+    margin: auto;
+    margin-top: 2%;
+
+}
+
+
+#grider{
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    
+
+}
+
+#grider>div>img {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+#complex{
+    background: rgb(255, 254, 248);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+#complex>div{
+    margin: 2%;
+    margin-left: 5%;
+
+}
+
+#change{
+
+    color: rgb(143, 143, 143);
+    font-weight: 200;
+
+}
+
+#complex>div:nth-child(1) {
+
+  background: rgb(255, 153, 0);
+  color: white;
+  padding: 1%;
+
+}
+#complex>div:nth-child(2) {
+
+  font-weight: 700;
+
+}
+
+
+#complex>div:nth-child(3) {
+
+  color: rgb(212, 212, 212);
+
+}
+
+#complex>div:nth-child(4) {
+
+   text-decoration: underline;
+
+}
+
+
+#view>div:nth-child(2){
+
+    margin-top: 5%;
+    background-color: rgb(255, 136, 0);
+    padding: 2%;
+    color: white;
+
+}
+
+
+#footer-section{
+    /* width: 100%; */
+    margin-top: 3%;
+    padding-left: 4%;
+    padding-right: 4%;
+    /* border: 1px solid green; */
+    height: 200px;
+    background-image: url("https://img.freepik.com/free-photo/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-room-wall_1258-28312.jpg?w=1060&t=st=1669108188~exp=1669108788~hmac=686c285c486c23078f6eb658a80651c88c6c528de08ca7dcc0bf240f2fce58f2");
+    display: flex;
+    height: 400px;
+    flex-direction: column;
+    
+}
+
+#logos{
+    width: 100%;
+    margin: auto;
+    /* border: 1px solid  blue; */
+    
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    
+}
+
+#linkers{
+   /* margin-bottom: 5%; */
+   margin-top: 5%;
+    display: flex;
+   justify-content: space-between;
+}
+
+#linkers>div{
+    color: white;
+}
+
+#social{
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#link-grid{
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap:5%
+
+}
+
+.white{
+
+
+    font-weight: 600;
+    font-size: 24px;
+
+}
+
+#sub>div{
+
+    margin-top: 5%;
+
+}
+
+#sub{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: space-between;
+
+}
+
+#link-grid>div>a, #grey{
+
+    text-decoration: none;
+    color: rgb(99, 99, 99);
+
+}
+
+#others{
+
+  margin: 1%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#others>div{
+
+    color: rgb(99, 99, 99);
+
+}
+
