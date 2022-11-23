@@ -184,17 +184,24 @@ function vaccinateIt(index) {
 const validate_otp = (index, storeed_otp) => {
   let get_otp = prompt("Enter the OTP");
   if (get_otp === storeed_otp) {
-    alert(registered_data[index].name + " added to waiting list");
+    alert(
+      registered_data[index].name + " added to waiting list  - Immediately"
+    );
     setTimeout(() => {
       alert(
         "Booking ticket from " +
           registered_data[index].from_station +
           " to " +
-          registered_data[index].to_station
+          registered_data[index].to_station +
+          " - After 5 seconds"
       );
     }, 5000);
     setTimeout(() => {
-      alert("Ticket booked for " + registered_data[index].date);
+      alert(
+        "Ticket booked for " +
+          registered_data[index].date +
+          " - After 5 seconds"
+      );
       vaccinated.push(registered_data[index]);
       localStorage.setItem("booked", JSON.stringify(registered_data));
       registered_data.splice(index, 1);
