@@ -19,6 +19,12 @@ o	Register Button -->
     <script src="./registered.js"></script>
   </head>
   <body>
+    <div id="navbar">
+      <a href="#">Register</a>
+      <a href="./Dashboard/dashboard.html">Dashboard</a>
+      <a href="./Vaccinated/vaccinated.html">vaccinated</a>
+    </div>
+    <hr />
     <div>
       <form id="form" onsubmit="validate()">
         <div>
@@ -62,25 +68,23 @@ o	Register Button -->
 
         <div>
           <p>Priority</p>
-          <select id="prior" onChange="prior()">
+          <select id="prior" onchange="priority()">
             <option value="">Select</option>
-            <option value="0">p0</option>
-            <option value="1">p1</option>
-            <option value="2">p2</option>
-            <option value="3">p3</option>
+            <option value="p0">p0</option>
+            <option value="p1">p1</option>
+            <option value="p2">p2</option>
+            <option value="p3">p3</option>
           </select>
         </div>
 
         <div>
-          <p>
-            Name of Vaccine
-            <select id="vaccine" onChange="vaccine()">
-              <option value="">Select</option>
-              <option value="shield">Covishield</option>
-              <option value="vaxin">Covaxin</option>
-              <option value="sput">Sputnik</option>
-            </select>
-          </p>
+          <p>Name of Vaccine</p>
+          <select id="vaccine" onchange="vaccinity()">
+            <option value="">Select</option>
+            <option value="Covishield">Covishield</option>
+            <option value="Covaxin">Covaxin</option>
+            <option value="Sputnik">Sputnik</option>
+          </select>
         </div>
 
         <div>

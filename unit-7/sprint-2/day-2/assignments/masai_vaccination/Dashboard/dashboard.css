@@ -1,0 +1,20 @@
+#navbar {
+
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+#registered_data{
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+
+
+}
+

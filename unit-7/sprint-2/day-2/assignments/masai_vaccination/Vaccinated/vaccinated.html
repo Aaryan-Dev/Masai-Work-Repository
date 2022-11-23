@@ -5,6 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vaccinated</title>
+
+    <link rel="stylesheet" href="./vaccinated.css" />
   </head>
-  <body></body>
+  <body>
+    <div id="navbar">
+      <a href="../register.html">Register</a>
+      <a href="../Dashboard/dashboard.html">Dashboard</a>
+      <a href="#">vaccinated</a>
+    </div>
+    <hr />
+
+    <div id="registered_data">
+      <select id="">
+        <option value="vaccine">Filter By Vaccine</option>
+        <option value="age">Sort By age</option>
+        <option value="priority">Filter By Priority</option>
+      </select>
+      <br />
+      <table border="2">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Designation</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </body>
 </html>
+
+<script src="./vaccinated.js"></script>

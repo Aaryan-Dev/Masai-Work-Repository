@@ -1,13 +1,17 @@
-let registered_data = JSON.parse(localStorage.getItem("registered"));
+let registered_data = JSON.parse(localStorage.getItem("registered")) || [];
 
-function prior() {
-  let prior = document.querySelector("#prior").value;
-  console.log(prior);
+let prior = null;
+
+function priority() {
+  prior = document.getElementById("prior").value;
+  //   console.log(prior);
 }
 
-function vaccine() {
-  let vaccine = document.querySelector("#vaccine").value;
-  console.log(vaccine);
+let vaccine = null;
+
+function vaccinity() {
+  vaccine = document.querySelector("#vaccine").value;
+  //   console.log(vaccine);
 }
 
 function validate(event) {
@@ -42,11 +46,10 @@ function validate(event) {
 
   let emp = document.querySelector("#emp").checked;
   let stud = document.querySelector("#std").checked;
-  //   let lable = document.lable;
 
-  //   console.log(lable);
-
-  if (emp === false && stud === false) {
+  if (prior === "" || vaccine === "" || prior === null || vaccine === null) {
+    alert("select priority and vaccine name");
+  } else if (emp === false && stud === false) {
     alert("Slelect Designatoin");
   } else if (get_id == "") {
     //   console.log(get_id);
@@ -64,8 +67,11 @@ function validate(event) {
       name: name,
       age: get_age,
       designation: emp ? "employee" : "student",
-      //       priority: ,
-      //   vaccine:,
+      priority: prior,
+      vaccine: vaccine,
     };
+    registered_data.push(object);
+
+    localStorage.setItem("registered", JSON.stringify(registered_data));
   }
 }
