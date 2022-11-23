@@ -68,15 +68,15 @@ function reload() {
   document.querySelector("#filter_v").focus();
   document.querySelector("#sort").value = "";
   document.querySelector("#sort").focus();
-  document.querySelector("#filter_p").value = "";
-  document.querySelector("#filter_p").focus();
+  document.querySelector("#sort_p").value = "";
+  document.querySelector("#sort_p").focus();
   display(registered_data);
 }
 
-function filter_vaccine() {
+function filter_seat() {
   const way = document.querySelector("#filter_v").value;
 
-  let filter_by_vaccine = registered_data.filter((el) => el.vaccine === way);
+  let filter_by_vaccine = registered_data.filter((el) => el.seat_type === way);
   document.querySelector("tbody").innerText = "";
   display(filter_by_vaccine);
 
@@ -110,14 +110,33 @@ function sort_age() {
     display(desc_sort);
   }
 }
-function filter_prioroty() {
-  const way = document.querySelector("#filter_p").value;
-
-  let filter_by_Prioroity = registered_data.filter((el) => el.priority === way);
-  document.querySelector("tbody").innerText = "";
-  display(filter_by_Prioroity);
-
-  // console.log(filter_by_Prioroity);
+function sort_date() {
+  const way = document.querySelector("#sort_p").value;
+  if (way == "asc") {
+    let asc_sort = registered_data.sort(function (a, b) {
+      if (a.date < b.date) {
+        return 1;
+      } else if (a.date > b.date) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    document.querySelector("tbody").innerText = "";
+    display(asc_sort);
+  } else {
+    let desc_sort = registered_data.sort(function (a, b) {
+      if (a.date > b.date) {
+        return 1;
+      } else if (a.date < b.date) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    document.querySelector("tbody").innerText = "";
+    display(desc_sort);
+  }
 }
 // ***************************************************************************
 function deleteIt(index) {

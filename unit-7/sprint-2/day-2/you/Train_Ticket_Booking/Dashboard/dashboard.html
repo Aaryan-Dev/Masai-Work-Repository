@@ -18,11 +18,12 @@
 
     <div id="registered_data">
       <div id="filter_sort">
-        <select id="filter_v" onchange="filter_vaccine()">
-          <option value="">Filter By Vaccine</option>
-          <option value="Covishield">Covishield</option>
-          <option value="Covaxin">Covaxin</option>
-          <option value="Sputnik">Sputnik</option>
+        <select id="filter_v" onchange="filter_seat()">
+          <option value="">Filter By Seat Type</option>
+          <option value="AC First Class">AC First Class</option>
+          <option value="Sleeper Class">Sleeper Class</option>
+          <option value="Second Class">Second Class</option>
+          <option value="General">General</option>
         </select>
 
         <select id="sort" onchange="sort_age()">
@@ -31,12 +32,10 @@
           <option value="desc">Low to High</option>
         </select>
 
-        <select id="filter_p" onchange="filter_prioroty()">
-          <option value="">Filter By Priority</option>
-          <option value="p0">p0</option>
-          <option value="p1">p1</option>
-          <option value="p2">p2</option>
-          <option value="p3">p3</option>
+        <select id="sort_p" onchange="sort_date()">
+          <option value="">Sort by Date</option>
+          <option value="asc">High to Low</option>
+          <option value="desc">Low to High</option>
         </select>
 
         <button onclick="reload()">Reset</button>

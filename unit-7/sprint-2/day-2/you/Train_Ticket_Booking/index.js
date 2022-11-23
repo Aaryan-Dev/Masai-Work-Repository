@@ -71,7 +71,7 @@ function validate(event) {
       date: date,
       seat_type: seat,
     };
-    console.log(object);
+
     registered_data.push(object);
     localStorage.setItem("registered", JSON.stringify(registered_data));
     alert("Registered");
