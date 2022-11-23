@@ -200,7 +200,7 @@ const validate_otp = (index, storeed_otp) => {
       alert(
         "Ticket booked for " +
           registered_data[index].date +
-          " - After 5 seconds"
+          " - After 10 seconds"
       );
       vaccinated.push(registered_data[index]);
       localStorage.setItem("booked", JSON.stringify(registered_data));
