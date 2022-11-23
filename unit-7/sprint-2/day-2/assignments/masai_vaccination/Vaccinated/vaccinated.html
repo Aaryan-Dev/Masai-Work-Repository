@@ -17,11 +17,30 @@
     <hr />
 
     <div id="registered_data">
-      <select id="">
-        <option value="vaccine">Filter By Vaccine</option>
-        <option value="age">Sort By age</option>
-        <option value="priority">Filter By Priority</option>
-      </select>
+      <div id="filter_sort">
+        <select id="filter_v" onchange="filter_vaccine()">
+          <option value="">Filter By Vaccine</option>
+          <option value="Covishield">Covishield</option>
+          <option value="Covaxin">Covaxin</option>
+          <option value="Sputnik">Sputnik</option>
+        </select>
+
+        <select id="sort" onchange="sort_age()">
+          <option value="">Sort by age</option>
+          <option value="asc">High to Low</option>
+          <option value="desc">Low to High</option>
+        </select>
+
+        <select id="filter_p" onchange="filter_prioroty()">
+          <option value="">Filter By Priority</option>
+          <option value="p0">p0</option>
+          <option value="p1">p1</option>
+          <option value="p2">p2</option>
+          <option value="p3">p3</option>
+        </select>
+
+        <button onclick="reload()">Reset</button>
+      </div>
       <br />
       <table border="2">
         <thead>
@@ -30,6 +49,7 @@
             <th>Name</th>
             <th>Age</th>
             <th>Designation</th>
+            <th>Vaccine</th>
             <th>Priority</th>
           </tr>
         </thead>
