@@ -1,9 +1,9 @@
 let registered_data = JSON.parse(localStorage.getItem("registered")) || [];
 let vaccinated = JSON.parse(localStorage.getItem("vaccinated")) || [];
 
-display();
+display(registered_data);
 
-function display() {
+function display(registered_data) {
   registered_data.forEach(function (el, index) {
     let firRow = document.createElement("tr");
     document.getElementById("tbody").append(firRow);
@@ -46,10 +46,79 @@ function display() {
     input.placeholder = "Enter the OTP";
     otp.append(input, button);
 
-    firRow.append(id, name, age, designation, priortity, delet, vaccinate, otp);
+    firRow.append(
+      id,
+      name,
+      age,
+      designation,
+      priortity,
+      vaccine,
+      delet,
+      vaccinate,
+      otp
+    );
   });
 }
+// **************************************************************
 
+function reload() {
+  document.querySelector("tbody").innerText = "";
+  document.querySelector("#filter_v").value = "";
+  document.querySelector("#filter_v").focus();
+  document.querySelector("#sort").value = "";
+  document.querySelector("#sort").focus();
+  document.querySelector("#filter_p").value = "";
+  document.querySelector("#filter_p").focus();
+  display(registered_data);
+}
+
+function filter_vaccine() {
+  const way = document.querySelector("#filter_v").value;
+
+  let filter_by_vaccine = registered_data.filter((el) => el.vaccine === way);
+  document.querySelector("tbody").innerText = "";
+  display(filter_by_vaccine);
+
+  console.log(filter_by_vaccine);
+}
+function sort_age() {
+  const way = document.querySelector("#sort").value;
+  if (way == "asc") {
+    let asc_sort = registered_data.sort(function (a, b) {
+      if (Number(a.age) - Number(b.age) < 0) {
+        return 1;
+      } else if (Number(a.age) - Number(b.age) > 0) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    document.querySelector("tbody").innerText = "";
+    display(asc_sort);
+  } else {
+    let desc_sort = registered_data.sort(function (a, b) {
+      if (Number(a.age) - Number(b.age) < 0) {
+        return -1;
+      } else if (Number(a.age) - Number(b.age) > 0) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    document.querySelector("tbody").innerText = "";
+    display(desc_sort);
+  }
+}
+function filter_prioroty() {
+  const way = document.querySelector("#filter_p").value;
+
+  let filter_by_Prioroity = registered_data.filter((el) => el.priority === way);
+  document.querySelector("tbody").innerText = "";
+  display(filter_by_Prioroity);
+
+  console.log(filter_by_Prioroity);
+}
+// ***************************************************************************
 function deleteIt(index) {
   // alert(index);
   registered_data.splice(index, 1);
@@ -71,7 +140,7 @@ function vaccinateIt(index) {
 
   storeed_otp = otp;
 
-  alert(otp);
+  alert("OTP is - " + otp);
 }
 
 const validate_otp = (index) => {
