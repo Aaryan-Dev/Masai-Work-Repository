@@ -74,6 +74,6 @@ function validate(event) {
 
     registered_data.push(object);
     localStorage.setItem("registered", JSON.stringify(registered_data));
-    alert("Registered");
+    alert("Registered Succesfully");
   }
 }
