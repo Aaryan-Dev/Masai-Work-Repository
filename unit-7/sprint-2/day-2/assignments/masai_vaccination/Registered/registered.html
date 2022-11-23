@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registerd</title>
+
+    <link rel="stylesheet" href="./registered.css" />
+
+    <!-- o	Unique ID: Should be unique, duplicate ID should not be allowed.
+o	Name: Should be at least 4 characters.
+o	Age: Should be between 18 to 40. No other values should be accepted.
+o	Designation : (Employee / Student) - You can use radio buttons for this.
+o	Priority : (p0, p1, p2, p3) - where “p0” has the highest priority and “p3” has the least.
+o	Vaccine: (Covishield / Covaxin /Sputnik) - Use select tag for this.
+o	Register Button -->
+
+    <script src="./registered.js"></script>
+  </head>
+  <body>
+    <div>
+      <form id="form" onsubmit="validate()">
+        <div>
+          <p>Id</p>
+          <input id="id" type="number" placeholder="Id" />
+        </div>
+
+        <div>
+          <p>Name</p>
+          <input id="name" type="text" placeholder="Name" />
+        </div>
+
+        <div>
+          <p>Age</p>
+          <input id="age" type="number" placeholder="Age" />
+        </div>
+
+        <div>
+          <p>Designation</p>
+          <label for="101">
+            <input
+              id="emp"
+              type="radio"
+              placeholder="Employee"
+              name="role"
+              value="Employee"
+            />
+            Employee
+          </label>
+          <label for="102">
+            <input
+              id="std"
+              type="radio"
+              placeholder="Student"
+              name="role"
+              value="Employee"
+            />
+            Student
+          </label>
+        </div>
+
+        <div>
+          <p>Priority</p>
+          <select id="prior" onChange="prior()">
+            <option value="">Select</option>
+            <option value="0">p0</option>
+            <option value="1">p1</option>
+            <option value="2">p2</option>
+            <option value="3">p3</option>
+          </select>
+        </div>
+
+        <div>
+          <p>
+            Name of Vaccine
+            <select id="vaccine" onChange="vaccine()">
+              <option value="">Select</option>
+              <option value="shield">Covishield</option>
+              <option value="vaxin">Covaxin</option>
+              <option value="sput">Sputnik</option>
+            </select>
+          </p>
+        </div>
+
+        <div>
+          <input type="submit" placeholder="submit" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
