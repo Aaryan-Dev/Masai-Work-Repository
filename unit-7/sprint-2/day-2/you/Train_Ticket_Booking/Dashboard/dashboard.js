@@ -203,7 +203,7 @@ const validate_otp = (index, storeed_otp) => {
           " - After 10 seconds"
       );
       vaccinated.push(registered_data[index]);
-      localStorage.setItem("booked", JSON.stringify(registered_data));
+      localStorage.setItem("booked", JSON.stringify(vaccinated));
       registered_data.splice(index, 1);
       localStorage.setItem("registered", JSON.stringify(registered_data));
       location.reload();
