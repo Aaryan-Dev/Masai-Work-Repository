@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resturant</title>
+  </head>
+
+  <link rel="stylesheet" href="index.css" />
+
+  <body>
+    <div id="navbar">
+      <a href="#">Login</a>
+      <a href="./resturant/resturant.html">Resturant</a>
+    </div>
+
+    <form id="form" onsubmit="login()">
+      <p>To Login use :-</p>
+      <p>Email = eve.holt@reqres.in</p>
+      <p>Password = cityslicka</p>
+      <input id="email" type="email" placeholder="Email" />
+
+      <input id="password" type="password" placeholder="Password" />
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>
+
+<script>
+  const login = () => {
+    const login_data = {
+      email: document.querySelector("#email").value,
+      password: document.querySelector("#password").value,
+    };
+    window.event.preventDefault();
+    console.log(login_data);
+    fetch("https://reqres.in/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(login_data),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res.token);
+        localStorage.setItem("r_token", JSON.stringify(res.token));
+
+        if (res.token === "QpwL5tke4Pnpja7X4") {
+          window.location.href = "./resturant/resturant.html";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+</script>
