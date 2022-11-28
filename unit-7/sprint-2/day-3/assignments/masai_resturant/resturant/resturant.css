@@ -1,0 +1,33 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+#navbar {
+
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    background-color: black;
+}
+
+#pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    width: 5%;
+}
+
+#diaplay{
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+
+
+}
