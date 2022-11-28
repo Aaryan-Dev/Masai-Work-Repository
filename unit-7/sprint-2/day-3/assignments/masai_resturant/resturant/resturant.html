@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resturant</title>
+
+    <link rel="stylesheet" href="resturant.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="#">Login</a>
+      <a href="./resturant/resturant.html">Resturant</a>
+    </div>
+    <div id="pagination">
+      <button id="dec" onclick="dec()"></button>
+      <button id="inc" onclick="inc()"></button>
+    </div>
+
+    <div id="diaplay"></div>
+  </body>
+</html>
+
+<script>
+  //   id: 61;
+  //   image: "https://picsum.photos/200";
+  //   name: "Labarre";
+  //   number_of_votes: 542;
+  //   price_starts_from: 150;
+  //   rating: 1.5;
+  //   type: "cafe";
+  function display(data) {
+    console.log(data);
+
+    data.forEach((el, index) => {
+      div = document.createElement("div");
+
+      img = document.createElement("img");
+      img.src = el.image;
+
+      nam = document.createElement("h2");
+      nam.innerHTML = el.name;
+
+      number_of_votes = document.createElement("h3");
+      number_of_votes.innerHTML = el.number_of_votes;
+
+      price_starts_from = document.createElement("h4");
+      price_starts_from.innerHTML = el.price_starts_from;
+
+      rating = document.createElement("h5");
+      rating.innerHTML = el.rating;
+
+      type = document.createElement("h5");
+      type.innerHTML = el.type;
+
+      div.append(img, nam, number_of_votes, price_starts_from, rating, type);
+      document.querySelector("#diaplay").append(div);
+    });
+  }
+
+  let token = JSON.parse(localStorage.getItem("r_token"));
+
+  if (token !== "QpwL5tke4Pnpja7X4") {
+    window.location.href = "../index.html";
+  }
+
+  let page_no = JSON.parse(localStorage.getItem("page")) || 1;
+
+  fetch(
+    `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants?page=${page_no}&limit=20`
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      display(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  if (JSON.parse(localStorage.getItem("page")) === 5) {
+    document.querySelector("#inc").disabled = true;
+  }
+  if (JSON.parse(localStorage.getItem("page")) === 1) {
+    document.querySelector("#dec").disabled = true;
+  }
+  document.querySelector("#inc").innerHTML = page_no + 1;
+  document.querySelector("#dec").innerHTML = page_no;
+  const inc = (page_no) => {
+    if (JSON.parse(localStorage.getItem("page")) !== 5) {
+      let change_page = JSON.parse(localStorage.getItem("page")) || 1;
+      localStorage.setItem("page", change_page + 1);
+      location.reload();
+    }
+  };
+
+  const dec = (page_no) => {
+    if (JSON.parse(localStorage.getItem("page")) !== 1) {
+      let change_page = JSON.parse(localStorage.getItem("page"));
+
+      localStorage.setItem("page", change_page - 1);
+
+      location.reload();
+    }
+  };
+</script>
