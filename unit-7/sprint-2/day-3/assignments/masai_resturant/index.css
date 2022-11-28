@@ -1,0 +1,31 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+#navbar{
+
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    background-color: black;
+}
+
+#form {
+
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2%;
+    background-color: black;
+    color: white;
+}
+
+#form>input{
+
+    margin: 1%;
+
+}
