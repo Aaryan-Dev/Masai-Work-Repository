@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Borrowed Books</title>
+  </head>
+
+  <link rel="stylesheet" href="./borrowed.css" />
+
+  <body>
+    <div id="navbar">
+      <a href="../index.html">Sign up</a>
+      <a href="../login/login.html">Log in</a>
+      <a href="../book/book.html">Books</a>
+      <a href="#">Borrowed Books</a>
+    </div>
+
+    <div id="display"></div>
+  </body>
+</html>
+
+<script>
+  let auth = JSON.parse(localStorage.getItem("auth")) || undefined;
+
+  if (auth === undefined) {
+    alert("Signup Or login");
+    window.location.href = "../login/login.html";
+  } else {
+    let borrowed_data = JSON.parse(localStorage.getItem(auth.username)) || [];
+    display(borrowed_data);
+  }
+
+  function display(data) {
+    if (data.length === 0) {
+      document.querySelector("#display").innerText = "It's Empty here";
+    }
+    data.forEach((el, index) => {
+      let div = document.createElement("div");
+      div.setAttribute("id", "brow");
+
+      let image_url = document.createElement("img");
+      image_url.src = el.image_url;
+
+      let author = document.createElement("h2");
+      author.innerHTML = "Author : " + el.author;
+
+      let book_name = document.createElement("h3");
+      book_name.innerHTML = el.book_name;
+
+      let cost = document.createElement("h4");
+      cost.innerHTML = "Total Cost : " + el.cost;
+      cost.style.color = "white";
+      cost.style.background = "black";
+
+      let edition = document.createElement("h5");
+      edition.innerHTML = "Edition : " + el.edition;
+
+      let genre = document.createElement("h5");
+      genre.innerHTML = "Genre : " + el.genre;
+
+      let publisher = document.createElement("h5");
+      publisher.innerHTML = "Publisher : " + el.publisher;
+      div.append(book_name, image_url, author, cost, edition, genre, publisher);
+      document.querySelector("#display").append(div);
+    });
+  }
+</script>

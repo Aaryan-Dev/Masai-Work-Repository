@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Libraray</title>
+  </head>
+
+  <link rel="stylesheet" href="login.css" />
+
+  <body>
+    <div id="navbar">
+      <a href="../index.html">Sign up</a>
+      <a href="#">Log in</a>
+      <a href="../book/book.html">Books</a>
+
+      <a href="../borrowed/borrowed.html">Borrowed Books</a>
+    </div>
+
+    <form id="form" onsubmit="login()">
+      <p>Login :-</p>
+
+      <input id="email" type="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Password" />
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>
+
+<script>
+  let user_data = JSON.parse(localStorage.getItem("user_data")) || [];
+
+  const login = () => {
+    window.event.preventDefault();
+    const login_data = {
+      email: document.querySelector("#email").value,
+      password: document.querySelector("#password").value,
+    };
+
+    if (
+      login_data.email == "admin@gmail.com" &&
+      login_data.password == "masai"
+    ) {
+      window.location.href = "../admin/admin.html";
+      console.log(login_data.email, login_data.password);
+    } else {
+      let value = undefined;
+      for (let i = 0; i < user_data.length; i++) {
+        if (
+          login_data.email === user_data[i].email &&
+          login_data.password === user_data[i].password
+        ) {
+          value = user_data[i];
+          break;
+        } else {
+          value = undefined;
+        }
+      }
+      if (value !== undefined) {
+        localStorage.setItem("auth", JSON.stringify(value));
+        alert("login successful");
+        window.location.href = "../book/book.html";
+      } else {
+        alert("login failed");
+      }
+    }
+  };
+</script>

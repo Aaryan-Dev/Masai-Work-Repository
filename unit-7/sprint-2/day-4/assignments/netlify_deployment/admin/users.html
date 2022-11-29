@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users</title>
+  </head>
+
+  <link rel="stylesheet" href="user.css" />
+
+  <body>
+    <div id="navbar">
+      <a href="./admin.html">Admin Dashboard</a>
+      <a href="#">Users</a>
+      <a href="../index.html">Sign up</a>
+      <a href="../login/login.html">Log in</a>
+    </div>
+
+    <table border="2">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+
+      <tbody id="display">
+        <tr></tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+<script>
+  let user_data = JSON.parse(localStorage.getItem("user_data")) || [];
+
+  if (user_data.length == 0) {
+    document.querySelector("#display").innerText = "No users!";
+  } else {
+    user_data.forEach((el, index) => {
+      let tr = document.createElement("tr");
+
+      let name = document.createElement("td");
+      name.innerText = el.username;
+
+      let email = document.createElement("td");
+      email.innerText = el.email;
+
+      let time = document.createElement("td");
+      time.innerText = el.time;
+
+      tr.append(name, email, time);
+
+      document.querySelector("#display").append(tr);
+    });
+  }
+</script>

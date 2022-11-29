@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      /* Write all necessery css here  */
+
+      #product-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+      }
+
+      #product-container > div > img {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <h1>Masai E-Commerce</h1>
+      <a href="./index.html">Home</a>
+      <a href="./cart.html">Cart</a>
+    </div>
+    <!-- Use this Select Tag for Filtering the Products  -->
+    <select id="filter" onchange="filter()">
+      <option value="">Filter By Category</option>
+      <option value="Laptop">Laptop</option>
+      <option value="Mobile">Mobile</option>
+      <option value="Speakers">Speakers</option>
+    </select>
+    <div id="product-container">
+      <!-- Here Append All the Products  -->
+    </div>
+  </body>
+  <script>
+    // Write all necessery JS here
+    let carter = JSON.parse(localStorage.getItem("cart")) || [];
+
+    fetch(
+      "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products"
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => display(res.data))
+      .catch((err) => console.log(err));
+
+    function display(arr) {
+      arr.forEach(function (el, index) {
+        let div = document.createElement("div");
+
+        let img = document.createElement("img");
+        img.src = el.img;
+
+        let h2 = document.createElement("h2");
+        h2.innerText = el.brand;
+
+        let h3 = document.createElement("h3");
+        h3.innerText = el.price;
+        let p1 = document.createElement("p");
+        p1.innerText = el.details;
+
+        let p2 = document.createElement("p");
+        p2.innerText = el.category;
+
+        let button = document.createElement("button");
+        button.innerText = "Add To Cart";
+        button.addEventListener("click", () => add(index));
+        div.append(img, h2, h3, p1, p2, button);
+
+        document.querySelector("#product-container").append(div);
+      });
+    }
+
+    function add(index) {
+      fetch(
+        "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products"
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => insert(res.data))
+        .catch((err) => console.log(err));
+
+      function insert(drr) {
+        let value = true;
+
+        for (let j = 0; j < carter.length; j++) {
+          console.log(carter[j]);
+
+          if (carter[j].id === drr[index].id) {
+            value = false;
+            break;
+          }
+        }
+
+        if (value) {
+          carter.push(drr[index]);
+          localStorage.setItem("cart", JSON.stringify(carter));
+          alert("Product Added To Cart");
+        } else {
+          alert("Product Already in Cart");
+        }
+      }
+    }
+
+    function filter() {
+      fetch(
+        "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products"
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => fill(res.data))
+        .catch((err) => console.log(err));
+
+      function fill(frr) {
+        let way = document.querySelector("#filter").value;
+
+        let filter_data = [];
+        if (way !== "") {
+          filter_data = frr.filter((el) => el.category == way);
+        } else {
+          filter_data = frr;
+        }
+
+        document.querySelector("#product-container").innerText = "";
+        display(filter_data);
+      }
+    }
+  </script>
+</html>

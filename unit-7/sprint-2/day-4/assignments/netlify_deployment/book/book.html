@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+  </head>
+
+  <link rel="stylesheet" href="book.css" />
+
+  <body>
+    <div id="navbar">
+      <a href="../index.html">Sign up</a>
+      <a href="../login/login.html">Log in</a>
+      <a href="#">Books</a>
+      <a href="../borrowed/borrowed.html">Borrowed Books</a>
+    </div>
+
+    <div id="display"></div>
+  </body>
+</html>
+
+<script>
+  let auth = JSON.parse(localStorage.getItem("auth")) || undefined;
+
+  if (auth === undefined) {
+    alert("Signup Or login");
+    window.location.href = "../login/login.html";
+  } else {
+    let borrowed_books = JSON.parse(localStorage.getItem(auth.username)) || [];
+
+    fetch("https://json-db.onrender.com/books")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        display(res);
+        //   console.log(res);
+      })
+      .then((err) => {});
+
+    //   author: "J. K. Rowling";
+    //   book_name: "Harry Potter and the Philosopher's Stone";
+    //   borrowed: false;
+    //   cost: 1299;
+    //   edition: "2021";
+    //   genre: "fiction";
+    //   image_url: "https://m.media-amazon.com/images/I/5165He67NEL.jpg";
+    //   publisher: "Bloomsbury";
+
+    function display(data) {
+      data.forEach((el, index) => {
+        let div = document.createElement("div");
+        div.setAttribute("id", "brow");
+
+        let image_url = document.createElement("img");
+        image_url.src = el.image_url;
+
+        let author = document.createElement("h2");
+        author.innerHTML = "Author : " + el.author;
+
+        let book_name = document.createElement("h3");
+        book_name.innerHTML = el.book_name;
+
+        let cost = document.createElement("h4");
+        cost.innerHTML = "Total Cost : " + el.cost;
+        cost.style.color = "white";
+        cost.style.background = "black";
+
+        let edition = document.createElement("h5");
+        edition.innerHTML = "Edition : " + el.edition;
+
+        let genre = document.createElement("h5");
+        genre.innerHTML = "Genre : " + el.genre;
+
+        let publisher = document.createElement("h5");
+        publisher.innerHTML = "Publisher : " + el.publisher;
+
+        let borrow = document.createElement("button");
+        borrow.innerHTML = "Borrow";
+        borrow.style.background = "green";
+        borrow.style.color = "white";
+        borrow.addEventListener("click", () => getIt(index));
+
+        div.append(
+          book_name,
+          image_url,
+          author,
+          cost,
+          edition,
+          genre,
+          publisher,
+          borrow
+        );
+        document.querySelector("#display").append(div);
+      });
+    }
+
+    function getIt(index) {
+      // console.log(index);
+      // console.log(auth);
+
+      // document.querySelector("#appended")[index].innerText = "";
+
+      let append_div = document.createElement("div");
+      append_div.setAttribute("id", "appended");
+
+      let p = document.createElement("p");
+      p.innerHTML = "Borrowed By : " + auth.username;
+
+      let p1 = document.createElement("p");
+      p1.innerHTML = "Date of Borrow : " + auth.time;
+
+      let close = document.createElement("button");
+      close.innerText = "Close";
+      close.addEventListener("click", () => hide(index));
+      close.style.background = "red";
+      close.style.color = "white";
+
+      let confirm = document.createElement("button");
+      confirm.innerText = "confirm";
+      confirm.addEventListener("click", () => confirmIt(index));
+      confirm.style.background = "blue";
+      confirm.style.color = "white";
+
+      append_div.append(p, p1, close, confirm);
+
+      document.querySelectorAll("#brow")[index].append(append_div);
+    }
+
+    function hide(index) {
+      let appen = document.querySelectorAll("#brow>div");
+
+      for (let i = 0; i < appen.length; i++) {
+        appen[i].innerHTML = "";
+      }
+    }
+
+    function confirmIt(index) {
+      alert("Order Confirmed");
+
+      fetch("https://json-db.onrender.com/books")
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          update(res);
+        })
+        .then((err) => {});
+
+      function update(old_data) {
+        borrowed_books.push(old_data[index]);
+        localStorage.setItem(auth.username, JSON.stringify(borrowed_books));
+        console.log(old_data);
+
+        let new_data = old_data.map((el) =>
+          el.id === index + 1 ? { ...el, borrowed: true } : el
+        );
+
+        for (let n = 0; n < new_data.length; n++) {
+          fetch(`https://json-db.onrender.com/books/${n + 1}`, {
+            method: "PUT",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(new_data[n]),
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              // console.log(res);
+            })
+            .then((err) => {});
+        }
+      }
+    }
+  }
+</script>

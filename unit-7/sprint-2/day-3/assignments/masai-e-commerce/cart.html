@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <style>
+      /* Write all necessery css here  */
+
+      #cart-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+      }
+
+      #cart-container > div > img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <h1>Masai E-Commerce</h1>
+      <a href="./index.html">Home</a>
+      <a href="./cart.html">Cart</a>
+    </div>
+    <h1 id="total">
+      Your Total cart Price is:- <span id="cart-total">0</span>
+    </h1>
+    <div id="cart-container">
+      <!-- Here Append All the cart Products  -->
+    </div>
+  </body>
+  <script>
+    let carter = JSON.parse(localStorage.getItem("cart")) || [];
+
+    for (let i = 0; i < carter.length; i++) {
+      if (carter[i].quantity === undefined) {
+        carter[i].quantity = 1;
+      }
+    }
+    localStorage.setItem("cart", JSON.stringify(carter));
+
+    let sum = 0;
+
+    display(carter);
+    function display(carter) {
+      // console.log(arr);
+      carter.forEach(function (el, index, arr) {
+        sum = sum + el.quantity * el.price;
+        let div = document.createElement("div");
+
+        let img = document.createElement("img");
+        img.src = el.img;
+
+        let h2 = document.createElement("h2");
+        h2.innerText = el.brand;
+
+        let h3 = document.createElement("h3");
+        h3.innerText = el.price;
+        let p1 = document.createElement("p");
+        p1.innerText = el.details;
+
+        let p2 = document.createElement("p");
+        p2.innerText = el.category;
+
+        let inc_button = document.createElement("button");
+        inc_button.innerText = "+";
+        inc_button.addEventListener("click", () => inc(arr[index]));
+
+        let span = document.createElement("span");
+        span.innerText = el.quantity;
+
+        let dsc_button = document.createElement("button");
+        dsc_button.innerText = "-";
+        dsc_button.setAttribute("id", "qwe");
+        dsc_button.addEventListener("click", () => dsc(arr[index]));
+
+        let remove = document.createElement("button");
+        remove.innerText = "Remove";
+        remove.addEventListener("click", () => rem(index));
+
+        div.append(img, h2, h3, p1, p2, inc_button, span, dsc_button, remove);
+
+        document.querySelector("#cart-container").append(div);
+      });
+    }
+
+    document.querySelector("#cart-total").innerText = sum;
+
+    function inc(arr) {
+      let inc_data = carter.map((el) =>
+        el.id == arr.id ? { ...el, quantity: el.quantity + 1 } : el
+      );
+      localStorage.setItem("cart", JSON.stringify(inc_data));
+      location.reload();
+    }
+
+    function dsc(arr) {
+      let inc_data = carter.map((el) =>
+        el.id == arr.id ? { ...el, quantity: el.quantity - 1 } : el
+      );
+      localStorage.setItem("cart", JSON.stringify(inc_data));
+      location.reload();
+    }
+
+    function rem(index) {
+      carter.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(carter));
+      location.reload();
+    }
+  </script>
+</html>

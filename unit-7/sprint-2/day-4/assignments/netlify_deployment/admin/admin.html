@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="#">Admin Dashboard</a>
+      <a href="./users.html">Users</a>
+      <a href="../index.html">Sign up</a>
+      <a href="../login/login.html">Log in</a>
+    </div>
+
+    <form id="form" onsubmit="create()">
+      <p>Post <Datal></Datal>:-</p>
+
+      <input id="img" type="text" placeholder="image_url" />
+      <input id="book_name" type="text" placeholder="book_name" />
+      <input id="author" type="text" placeholder="author" />
+      <input id="genre" type="text" placeholder="genre" />
+      <input id="edition" type="number" placeholder="edition" />
+      <input id="publisher" type="text" placeholder="publisher" />
+      <input id="cost" type="number" placeholder="cost" />
+      <input type="submit" value="submit" />
+    </form>
+
+    <div id="Books">
+      <h2>Books</h2>
+    </div>
+
+    <table border="2">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Image</th>
+          <th>book_name</th>
+          <th>author</th>
+          <th>genre</th>
+          <th>edition</th>
+          <th>publisher</th>
+          <th>cost</th>
+          <th>borrowed</th>
+        </tr>
+      </thead>
+
+      <tbody id="display">
+        <tr></tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+<script>
+  function create() {
+    window.event.preventDefault();
+
+    let create = {
+      image_url: document.querySelector("#img").value,
+      book_name: document.querySelector("#book_name").value,
+      author: document.querySelector("#author").value,
+      genre: document.querySelector("#genre").value,
+      edition: document.querySelector("#edition").value,
+      publisher: document.querySelector("#publisher").value,
+      cost: document.querySelector("#cost").value,
+      borrowed: false,
+    };
+
+    const url = `https://json-db.onrender.com/books`;
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(create),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        // console.log(res);
+        location.reload();
+        alert("data Posted successfully");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  }
+
+  // ***********************************************************************************************
+
+  fetch("https://json-db.onrender.com/books")
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      display(res);
+    })
+    .catch((err) => {});
+
+  function display(data) {
+    data.forEach((el, index) => {
+      let tr = document.createElement("tr");
+
+      let id = document.createElement("td");
+      id.innerText = el.id;
+
+      let image_url = document.createElement("td");
+      image_url.innerText = el.image_url;
+
+      let book_name = document.createElement("td");
+      book_name.innerText = el.book_name;
+
+      let author = document.createElement("td");
+      author.innerText = el.author;
+
+      let genre = document.createElement("td");
+      genre.innerText = el.genre;
+
+      let edition = document.createElement("td");
+      edition.innerText = el.edition;
+
+      let publisher = document.createElement("td");
+      publisher.innerText = el.publisher;
+
+      let cost = document.createElement("td");
+      cost.innerText = el.cost;
+
+      let borrowed = document.createElement("td");
+      borrowed.innerText = el.borrowed;
+
+      let edit = document.createElement("button");
+      edit.innerText = "Edit";
+
+      let remove = document.createElement("button");
+      remove.innerText = "Delete";
+      remove.addEventListener("click", () => remov(el));
+
+      <!-- // {
+      //     "image_url": "https://m.media-amazon.com/images/I/5165He67NEL.jpg",
+      //     "book_name": "Harry Potter and the Philosopher's Stone",
+      //     "author": "J. K. Rowling",
+      // 		"genre": "fiction",
+      // 		"edition": "2021",
+      // 		"publisher": "Bloomsbury",
+      // 		"cost": 1299,
+      // 		"borrowed": false,
+      //   } -->
+
+      tr.append(
+        id,
+        image_url,
+        book_name,
+        author,
+        genre,
+        edition,
+        publisher,
+        cost,
+        borrowed,
+        edit,
+        remove
+      );
+
+      document.querySelector("#display").append(tr);
+    });
+  }
+
+  function remov(el) {
+    fetch("https://json-db.onrender.com/books")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        up(res);
+      })
+      .catch((err) => {});
+
+    function up(data) {
+      let Id = undefined;
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].id == el.id) {
+          Id = data[i].id;
+        }
+      }
+
+      console.log(Id);
+
+      fetch(`https://json-db.onrender.com/books/${Id}`, {
+        method: "DELETE",
+        body: JSON.stringify(create),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          // console.log(res);
+          location.reload();
+          // alert("data DELETED successfully");
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
+    }
+  }
+
+  // ***********************************************************************************************
+  // function update() {
+  //   let roll = document.querySelector("#roll2").value;
+  //   let name = document.querySelector("#name2").value;
+
+  //   create = JSON.stringify(create);
+
+  //   const url = `http://127.0.0.1:3000/products/${
+  //     document.querySelector("#roll2").value
+  //   }`;
+
+  //   fetch(url, {
+  //     method: "PATCH",
+  //     body: JSON.stringify(
+  //       // ****
+  //       {
+  //         Name: name,
+  //       }
+  //       // ****
+  //     ),
+  //     headers: { "Content-Type": "application/json" },
+  //   })
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // }
+  // // ***********************************************************************************************
+  // function remove() {
+  //   let roll = document.querySelector("#roll3").value;
+
+  //   const url = `http://127.0.0.1:3000/products/${
+  //     document.querySelector("#roll3").value
+  //   }`;
+
+  //   fetch(url, {
+  //     method: "DELETE",
+  //     headers: { "Content-Type": "application/json" },
+  //   })
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // }
+  // ***********************************************************************************************
+  // const url = `http://127.0.0.1:3000/products`;
+
+  // fetch(url)
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((res) => {
+  //     console.log(res);
+
+  //     res.forEach((elem) => {
+  //       let div = document.createElement("div");
+  //       document.querySelector("#weed").append(div);
+
+  //       let id = document.createElement("h5");
+  //       id.innerText = elem.id + " " + elem.Name;
+
+  //       div.append(id);
+  //     });
+  //   });
+</script>

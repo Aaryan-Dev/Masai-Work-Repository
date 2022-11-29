@@ -1,0 +1,50 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+#navbar {
+
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    background-color: black;
+}
+
+#form {
+
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2%;
+    background-color: black;
+    color: white;
+}
+
+#form>input {
+
+    margin: 1%;
+
+}
+
+table {
+    width: 90%;
+    margin: auto;
+    background-color: black;
+    color: white;
+}
+
+#Books {
+    width: 90%;
+    margin: auto;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: auto;
+    margin-top: 1%;
+}
